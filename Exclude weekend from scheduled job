@@ -1,0 +1,12 @@
+//This is a script that can be used to prevent Scheduled Jobs for various tasks from running on weekends when a conditional check is used:
+
+function checkWeekdays() {
+            var now = new Date();
+            var day = now.getDay();
+            var result = false;
+            if(day != 0 && day != 6) {
+                        result = true;
+            }
+            return result;
+}
+checkWeekdays();
