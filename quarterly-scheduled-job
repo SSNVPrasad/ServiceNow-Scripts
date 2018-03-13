@@ -1,0 +1,12 @@
+//Return 'true' to run the job
+var answer = false;
+ 
+//Get the month of the year. 1=January, 12=December
+var now = new GlideDateTime();
+ 
+//Run quarterly
+month = now.getMonth();
+if(month == 1 || month == 4 || month == 7 || month == 10){
+   answer = true;
+}
+answer;
