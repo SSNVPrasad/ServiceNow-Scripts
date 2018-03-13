@@ -1,0 +1,20 @@
+//Create and onChange Catalog Client Script with the following javascript:
+ 
+function onChange(control, oldValue, newValue, isLoading) {  
+   if (isLoading || newValue == '') {  
+      return;  
+   }  
+  
+   //Email Validation Using OOB Error Checking  
+   if(oldValue != newValue){    
+      g_form.hideFieldMsg('RECORD PRODUCER VARIABLE NAME', true);    
+ 
+ var problemMsg = isEmailValidWithReason(newValue);  
+   
+  if (problemMsg != "") {  
+     g_form.setValue('RECORD PRODUCER VARIABLE NAME', '');
+     alert(newValue + " is an invalid email, " + problemMsg + ".");    
+     }    
+ 
+   } 
+} 
