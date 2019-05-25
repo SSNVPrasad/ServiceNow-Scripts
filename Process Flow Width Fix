@@ -1,4 +1,4 @@
-//fix scrollbar that appears when the rightmost state in a flow formatter is active
+//UI Script to fix scrollbar that appears when the rightmost state in a flow formatter is active
 window.addEventListener("load", function() {
   try {
     var processFlowElement = document.getElementsByClassName("process-breadcrumb-border");
@@ -6,6 +6,6 @@ window.addEventListener("load", function() {
       processFlowElement[0].style.width = "98%";
     }
   } catch (err) {
-    jslog("(FPUK) Process Flow Width Fix: " + err);
+    jslog("Process Flow Width Fix: " + err);
   }
 });
