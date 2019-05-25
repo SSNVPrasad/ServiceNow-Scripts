@@ -1,0 +1,23 @@
+//change the tablename if you want to query a different table like cmdb_ci_server
+//add a parameter to the function call if you want to add a query
+gs.print(getComputersWithoutSoftware('cmdb_ci_computer'));
+function getComputersWithoutSoftware(compTableName, compQuery) {
+var computers = [];
+var grComputer = new GlideRecord(compTableName);
+grComputer.addEncodedQuery(compQuery);
+grComputer.query();
+while (grComputer.next()) {
+var gaInstalledSoftware = new GlideAggregate('cmdb_sam_sw_install');
+gaInstalledSoftware.addQuery('installed_on', grComputer.sys_id);
+gaInstalledSoftware.addAggregate('COUNT');
+gaInstalledSoftware.query();
+var comp = 0;
+if (gaInstalledSoftware.next()) {
+comp = gaInstalledSoftware.getAggregate('COUNT');
+if (comp == 0) {
+computers.push(grComputer.name.toString());
+}
+}
+return computers;
+}
+}
