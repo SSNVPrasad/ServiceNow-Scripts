@@ -1,0 +1,26 @@
+(function calculatedFieldValue(current) {
+var diff = gs.dateDiff(current.u_dob, new GlideDateTime(), true);
+function getDurationAsString(maxUnits, seconds) {
+var units = [], data = [
+{ "l": "Year", "s": 31535000 } 
+,
+{ "l": "Month", "s": 2628000 } 
+,
+{ "l": "Day", "s": 86400 } 
+,
+{ "l": "Hour", "s": 3600 } 
+,
+{ "l": "Minute", "s": 60 } 
+,
+{ "l": "Second", "s": 1 } 
+,
+];
+for(var i = 0; i < data.length && i < maxUnits; i ++) {
+if(seconds >= data[i].s) 
+{ var unit = Math.floor(seconds / data[i].s); seconds -= (unit * data[i].s); units.push(unit + ' ' + data[i].l + ((unit == 1)? '': 's')); } 
+}
+return units.join(', ');
+}
+return getDurationAsString(2, diff);
+}
+)(current);
