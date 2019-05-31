@@ -1,0 +1,13 @@
+var ExpirationDate = Class.create();
+ExpirationDate.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	addThreeYears: function(){
+		var gdt = new GlideDateTime(this.getParameter('sysparm_cdt'));
+		gdt.addYearsUTC(3);
+		
+		var gd = new GlideDate();
+		gd.setValue( gdt.getValue() );
+		return gd.getDisplayValue();
+	},
+	type: 'ExpirationDate'
+});
