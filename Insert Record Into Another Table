@@ -1,0 +1,18 @@
+(function executeRule(current, previous /*null when async*/) { 
+
+var gr = new GlideRecord('table_to_insert_to');
+gr.initialize();
+gr.u_name = current.u_name;
+gr.u_breed = current.u_breed;
+gr.u_gender = current.u_gender;
+gr.u_color = current.u_color;
+gr.u_dob = current.u_dob;	
+gr.u_owner = current.u_owner;
+gr.u_breeder = current.u_breeder;
+gr.u_microchip = current.u_microchip;
+gr.u_description = current.u_description;
+gr.u_picture = current.u_picture;
+gr.u_record_reference = current.sys_id;  // Field to relate records on each table
+gr.insert();
+	
+})(current, previous);  
