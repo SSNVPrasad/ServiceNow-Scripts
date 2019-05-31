@@ -1,0 +1,5 @@
+var answer = true; //Hide the 'Edit' button by default
+if(gs.hasRole('user_admin') || parent.manager == gs.getUserID()){
+   answer = false; //Show the 'Edit' button if user has 'user_admin' role or is group manager
+}
+answer;
