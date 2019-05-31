@@ -1,0 +1,23 @@
+function onLoad() {
+  
+	//Script to check if the associated Lease Contract documents are attached to the horse's record
+	
+	var insCon = g_form.getDisplayBox('u_insurance').value;
+	var name = g_form.getValue('u_name');	
+
+if(insCon != ""){ //<-- Check if the Lease Contract field is not blank	
+	
+	var sysid_gel = gel('sys_uniqueValue');
+	var cat_id = sysid_gel.value;
+	var ga = new GlideAjax('AJAXcheckAttachment');  
+	ga.addParam('sysparm_name','checkInsCon');  //<-- Lookup the function in the AJAXcheckAttachment script include
+	ga.addParam('cat_id', cat_id);
+	ga.getXMLWait();	
+	var check = ga.getAnswer();
+	
+if (check == 'false'){
+	g_form.addErrorMessage('Please make sure to attach the Insurance Policy for' + " " + name + '.');
+	return false;
+	}
+}  
+}
