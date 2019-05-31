@@ -1,0 +1,22 @@
+function onChange(control, oldValue, newValue, isLoading) {
+	if (isLoading || newValue == '') {
+		return;
+	}
+	
+	var cdt = g_form.getValue('completed_date'); //Choose the field to add time from
+	var addtime = 3; //The amount of time to add
+	var addtype = 'day'; //The time type.  Can be day, week, month, year.
+	
+	var ajax = new GlideAjax('ExpirationDate');
+	ajax.addParam('sysparm_name', 'addThreeYears');
+	ajax.addParam('sysparm_cdt', cdt);
+	//ajax.addParam('sysparm_addtime', addtime);
+	//ajax.addParam('sysparm_addtype', addtype);
+	ajax.getXML(doSomething);
+	
+	
+	function doSomething(response){
+		var answer = response.responseXML.documentElement.getAttribute("answer");
+		g_form.setValue('expiration_date',answer);
+	}
+}
