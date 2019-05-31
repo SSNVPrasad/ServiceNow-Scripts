@@ -1,0 +1,75 @@
+/**
+ * Implements a sensor for devices with APC PDU capability (SNMP PowerNet-MIB).
+ *
+ * Mike Currie mike.currie@service-now.com
+ * Updated by Andrew Westervelt
+ */
+new DiscoverySensor({
+        process: function() {
+                this.parseOutput(payload); // from payload global...
+        },
+        
+        parseOutput: function(document) {
+                this.document = document;
+                var current_load_amps      = '' + XMLUtil.getText( this.document, '//apc/products/hardware/rPDU/rPDULoad/rPDULoadStatus/rPDULoadStatusEntry/rPDULoadStatusLoad');
+                
+                var hardware_version   = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUIdent/sPDUIdentHardwareRev');
+                var firmware_version   = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUIdent/sPDUIdentFirmwareRev' );
+                var date_of_man        = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUIdent/sPDUIdentDateOfManufacture' );
+                var model_number           = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUIdent/sPDUIdentModelNumber' ) ;
+                var serial_number      = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUIdent/sPDUIdentSerialNumber') ;
+                var master_state       = '' + XMLUtil.getText( this.document, '//apc/products/hardware/masterswitch/sPDUMasterControl/sPDUMasterState');
+                var current_load_state = '' + XMLUtil.getText( this.document, '//apc/products/hardware/rPDU/rPDULoad/rPDULoadStatus/rPDULoadStatusEntry/rPDULoadStatusLoadState');
+                var outlet_count       = '' + XMLUtil.getText( this.document, '//apc/products/hardware/rPDU/rPDUIdent/rPDUIdentDeviceNumOutlets');
+                
+                if (gs.notNil(current_load_amps)){
+                        current.current_load_amps  = parseInt(current_load_amps, 10 ) / 10.0;
+                }
+                if (gs.notNil(hardware_version)){
+                        current.hardware_version = hardware_version;
+                }
+                if (gs.notNil(firmware_version)){
+                        current.firmware_version = firmware_version;
+                }
+                if (gs.notNil(date_of_man)){
+                        current.date_of_man = date_of_man;
+                }
+                if (gs.notNil(serial_number)){
+                        current.serial_number = serial_number;
+                }
+                if (gs.notNil(master_state)){
+                        current.master_state = master_state;
+                }
+                if (gs.notNil(current_load_state)){
+                        current.current_load_state = current_load_state;
+                }
+                if (gs.notNil(outlet_count)){
+                        current.outlet_count = outlet_count;
+                }
+
+
+                var load  = g_disco_functions.getXMLMemoryTable( 'load',  this.document, '//rPDU/rPDULoad/rPDULoadStatus/rPDULoadStatusEntry'   );
+                var outlets  = g_disco_functions.getXMLMemoryTable( 'outlets',  this.document, '//rPDU/rPDUOutlet/rPDUOutletStatus/rPDUOutletStatusEntry'   );
+                
+                if (gs.notNil(model_number)){
+        var makeAndModel =  MakeAndModel.fromNames('APC', model_number);
+        current.manufacturer = makeAndModel.getManufacturerSysID();
+        current.model_id = makeAndModel.getModelNameSysID();
+                }
+                
+                load.first();
+                if (load.next()){
+                        current.current_load_amps = parseInt(load.getValue('rPDULoadStatusLoad'), 10) /10.0;
+                        current.current_load_state = load.getValue('rPDULoadStatusLoadState');
+                }
+                
+                outlets.first();
+                var reconciler = new ApcPduOutletReconciler(  this.getCmdbCi(), outlets  );
+                reconciler.process();
+                
+                var sni = new SNMPNetworkInterfaces();
+                sni.process(this.getCmdbCi(), this.document, false, g_probe.getAgent(), g_probe.getEccQueueRecord().getValue('sys_id'));
+        },
+        
+        type: 'APCPDUSensor'
+});
