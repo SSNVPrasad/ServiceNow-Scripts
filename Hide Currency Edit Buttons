@@ -1,0 +1,46 @@
+function onLoad() {  
+
+//Used to hide the currency edit link icons on the form  
+	
+	var purCon = g_form.getDisplayBox('u_purchase_contract').value;
+	var saleCon = g_form.getDisplayBox('u_sale_contract').value;
+	var leaseCon = g_form.getDisplayBox('u_lease_contract').value;
+	var insCon = g_form.getDisplayBox('u_insurance').value;
+	
+	
+if(purCon != ""){
+
+	var purCommEdit = document.getElementById("u_evergate_stables_horses.u_purchase_contract.u_commission_amount.editLink");
+	 purCommEdit.style.visibility="hidden";
+	var purAmountEdit = document.getElementById("u_evergate_stables_horses.u_purchase_contract.payment_amount.editLink");
+	 purAmountEdit.style.visibility="hidden";
+}
+	
+if(saleCon != ""){
+	
+	var saleAmountEdit = document.getElementById("u_evergate_stables_horses.u_sale_contract.payment_amount.editLink");
+	 saleAmountEdit.style.visibility="hidden";
+	var saleCommEdit = document.getElementById("u_evergate_stables_horses.u_sale_contract.u_commission_amount.editLink");
+	 saleCommEdit.style.visibility="hidden";
+	var gainLossEdit = document.getElementById("u_evergate_stables_horses.u_sale_contract.u_gain_loss.editLink");
+	 gainLossEdit.style.visibility="hidden";
+}
+	
+if(leaseCon != ""){
+	
+	var leaseAmountEdit = document.getElementById("u_evergate_stables_horses.u_lease_contract.payment_amount.editLink");
+	 leaseAmountEdit.style.visibility="hidden";
+	var leaseMonthCostEdit = document.getElementById("u_evergate_stables_horses.u_lease_contract.monthly_cost.editLink");
+	 leaseMonthCostEdit.style.visibility="hidden";
+	var leaseYearCostEdit = document.getElementById("u_evergate_stables_horses.u_lease_contract.yearly_cost.editLink");
+	 leaseYearCostEdit.style.visibility="hidden";
+	var leaseCommEdit = document.getElementById("u_evergate_stables_horses.u_lease_contract.u_commission_amount.editLink");
+	 leaseCommEdit.style.visibility="hidden";
+}
+	
+if(insCon != ""){
+	
+	var insCoverageEdit = document.getElementById("u_evergate_stables_horses.u_insurance.u_coverage_amount.editLink");
+	 insCoverageEdit.style.visibility="hidden";
+}
+}
