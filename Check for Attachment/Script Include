@@ -1,0 +1,161 @@
+var AJAXcheckAttachment = Class.create();  
+AJAXcheckAttachment.prototype = Object.extendsObject(AbstractAjaxProcessor, {  
+  
+	checkVATAttachment: function() {  
+
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");    
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','VAT');  
+gr.query();    
+
+if (!gr.next()) {  
+	return false;  
+  }  
+  },
+	
+	checkUSEFApp: function() {
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','USEF app');	
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+}, 
+	
+	checkUSEFCard: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','USEF card');	
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+},  
+	
+	checkPurCon: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);
+gr.addQuery("file_name",'CONTAINS','purchase');  
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+}, 
+	
+	checkSaleCon: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','sold');
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+},
+	
+	checkLeaseCon: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','lease');
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+}, 
+	
+	checkPassApp: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','passport app');
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+}, 
+	
+	checkPassDoc: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','passport doc');
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+},
+	
+	checkInsCon: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','insurance');
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+}, 
+			
+	checkFEIReg: function() {  
+		
+var cat_id = this.getParameter('cat_id');		
+var gr = new GlideRecord("sys_attachment");		
+gr.addQuery("table_name", "u_evergate_stables_horses");    
+gr.addQuery('table_sys_id', cat_id);  
+gr.addQuery("file_name",'CONTAINS','FEI reg');	
+gr.query();    		
+
+if (!gr.next()) { 
+	return false;
+}
+},
+	
+	//checkUSEFReg: function() {  
+		
+//var cat_id = this.getParameter('cat_id');		
+//var gr = new GlideRecord("sys_attachment");		
+//gr.addQuery("table_name", "u_evergate_stables_horses");    
+//gr.addQuery('table_sys_id', cat_id);  
+//gr.addEncodedQuery('file_nameLIKEUSEF reg^ORfile_nameLIKEUSEF_reg^ORfile_nameLIKEUSEF-reg^ORfile_nameLIKEUSEFreg');
+//gr.query();    		
+
+//if (!gr.next()) { 
+	//return false;
+//}
+//},
+  
+  
+  type: 'AJAXcheckAttachment' 
+													 
+});  
