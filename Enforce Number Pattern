@@ -1,0 +1,29 @@
+function onChange(control, oldValue, newValue, isLoading) {
+  if (isLoading || newValue == '') {
+  return;
+  }
+ 
+  var horseIDString = '';
+  horseIDString = g_form.getValue('u_horse_id');
+  var horseIDFieldFormat = /^H[0-9]{5}$/; // Pattern for appropriate format
+ 
+  // Check for match to format, if it does not match, strip non-digit characters and apply format
+  if(!horseIDFieldFormat.test(horseIDString)){
+  horseIDString = horseIDString.replace(/[^\d]/g,'');
+  var horseIDPattern = /^[0-9]{5}$/; // Determine if six numbers entered
+ 
+  if(!horseIDPattern.test(horseIDString)){
+  // g_form.clearValue('FIELDNAME');  // Uncomment this if you want to clear the value
+  g_form.showFieldMsg('u_horse_id', 'Invalid Horse ID format.  Please enter the 5 digit Horse ID code in the format: "H#####".','error');
+  }
+  if(horseIDPattern.test(horseIDString)){
+  g_form.hideAllFieldMsgs();
+  newNum = 'H' + horseIDString;
+  g_form.setValue('u_horse_id',newNum);
+  }
+  }
+ 
+  if(horseIDFieldFormat.test(horseIDString)){
+  g_form.hideAllFieldMsgs();
+  }
+}
