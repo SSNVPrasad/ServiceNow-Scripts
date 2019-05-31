@@ -1,0 +1,14 @@
+//Name: Restrict Changes to Group Managers
+//Table: Group Member [sys_user_grmember]
+//Name: Restrict Changes to Group Managers
+//Before: True
+//Insert/Update: True
+
+(function executeRule(current, previous /*null when async*/) {
+    if(!gs.hasRole('user_admin') && current.group.manager != gs.getUserID()){
+        //Abort the insert or update
+        gs.addErrorMessage('You do not have permission to modify this group membership.');
+        current.setAbortAction(true);
+    }
+    
+})(current, previous);
