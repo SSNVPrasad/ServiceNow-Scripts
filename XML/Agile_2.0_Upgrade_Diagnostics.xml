@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2018-11-02 16:11:02">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>Agile Diagnostics</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>6d847201db6523003771d311ce9619bd</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2018-11-02 16:11:02</sys_created_on>
+<sys_id>1c64165ddb2123006fc8ff041d961999</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2018-11-02 16:11:02</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_app_module_56890b6ec1512300964f4bdf435a1f3c</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="Agile 2.0 Upgrade Diagnostics">3cbf2a09db652300479e769e0f9619e4</application><assessment/><content_page/><device_type/><filter/><hint/><homepage/><image/><link_type>DIRECT</link_type><map_page/><mobile_title>Agile Diagnostics</mobile_title><mobile_view_name>Mobile</mobile_view_name><name/><order>10</order><override_menu_roles>false</override_menu_roles><query>$agile_diagnostics.do</query><report/><roles>admin</roles><sys_class_name>sys_app_module</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2018-10-25 07:04:07</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>56890b6ec1512300964f4bdf435a1f3c</sys_id><sys_mod_count>3</sys_mod_count><sys_name>View Diagnostics</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_app_module_56890b6ec1512300964f4bdf435a1f3c</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2018-11-01 23:50:01</sys_updated_on><timeline_page/><title>View Diagnostics</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+<payload_hash>-258034718</payload_hash>
+<remote_update_set display_value="Agile Diagnostics">1c64165ddb2123006fc8ff041d961999</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2018-11-02 16:11:02</sys_created_on>
+<sys_id>2c64965ddb2123006fc8ff041d96190f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>166d1b1c3610000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2018-11-02 16:11:02</sys_updated_on>
+<table/>
+<target_name>View Diagnostics</target_name>
+<type>Module</type>
+<update_domain>global</update_domain>
+<update_guid>96d3f2c9e0652300f89bad3ef45382ae</update_guid>
+<update_guid_history>96d3f2c9e0652300f89bad3ef45382ae:-258034718,1edf2a0945652300d1a88587384320f0:1739824418,63fd66c514652300d0045331dfb1ee96:-1336647073,077acfae13512300673debc9693cd5f6:-1101225910</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_app_application_3cbf2a09db652300479e769e0f9619e4</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_application"><sys_app_application action="INSERT_OR_UPDATE"><active>true</active><category/><description/><device_type>browser</device_type><hint/><name/><order/><roles>admin</roles><sys_class_name>sys_app_application</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2018-11-01 23:32:23</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>3cbf2a09db652300479e769e0f9619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Agile 2.0 Upgrade Diagnostics</sys_name><sys_overrides/><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_app_application_3cbf2a09db652300479e769e0f9619e4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2018-11-01 23:32:23</sys_updated_on><title>Agile 2.0 Upgrade Diagnostics</title><view_name/></sys_app_application></record_update>]]></payload>
+<payload_hash>-1964107427</payload_hash>
+<remote_update_set display_value="Agile Diagnostics">1c64165ddb2123006fc8ff041d961999</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2018-11-02 16:11:02</sys_created_on>
+<sys_id>5064165ddb2123006fc8ff041d96199a</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>166d1b1c3090000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2018-11-02 16:11:02</sys_updated_on>
+<table/>
+<target_name>Agile 2.0 Upgrade Diagnostics</target_name>
+<type>Application Menu</type>
+<update_domain>global</update_domain>
+<update_guid>0cdf6a09ac6523008c2dfdf7fe7e83fa</update_guid>
+<update_guid_history>0cdf6a09ac6523008c2dfdf7fe7e83fa:-1964107427</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_page_0069876ec1512300964f4bdf435a1f92</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script/&gt;&lt;description/&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+    &lt;g2:evaluate var="jvar_updates" object="true"&gt;
+
+        var recordsToDelete = [
+        "sys_ui_list_control_3f85b6907f00000135a05e41c7547354",
+        "sys_ui_list_control_3f8607b47f0000012aaff213c654be45",
+        "sys_ui_list_control_6daa4a777f000001007607d32a0b44f0",
+        "sys_ui_list_control_7d3d1f917f000001798fc58141419300",
+        "sys_ui_list_control_aa8a1aae7f000001432d0e1142a85c2d",
+        "sys_ui_list_control_aa8a4bbe7f00000139552678204587f7",
+        "sys_ui_list_control_aa8ace2f7f000001514936314eb4c441",
+        "sys_ui_list_control_aa8b47f57f000001024db35639e9239d",
+        "sys_ui_list_control_aa8b87c57f0000014da26c6926295c45",
+        "sys_ui_list_control_aa8bb1fe7f000001566e2efad03b5d1d",
+        "sys_ui_list_control_f2e3f8447f0000010e16b6f2131e4c51",
+        "sys_ui_list_control_f2e421e97f0000015fecc4e84539ca3f",
+        "sys_ui_list_control_f31a7ea37f00000111797ad94bfc17a7",
+
+        "sys_ui_form_sections_6dd15dd77f00000146435a3f9ec1b5c2",
+        "sys_ui_form_sections_6dd2cbb17f0000016bc846fa867d9527",
+        "sys_ui_form_sections_6dd47d6f7f0000011b43299d37b79da0",
+
+        "sys_ui_section_09c7f68d0a0a2c39447a64370c6851bb",
+        "sys_ui_section_09c9c4eb0a0a2c390ca461bae347c0c8",
+        "sys_ui_section_6da8bbff7f00000119f52f9d2ba74f7e",
+        "sys_ui_section_6dc344847f0000017a3badab86eae0f4",
+        "sys_ui_section_6dc409c57f0000016dd1fbecc461c7b9",
+        "sys_ui_section_6dd15e0a7f00000104ddce3e4fec5457",
+        "sys_ui_section_6dd2cbc97f0000016b6662d744a1766c",
+        "sys_ui_section_6dd47d857f000001783b95cc64af46a4",
+        "sys_ui_section_8756880b7f00000147213f08234c9a57",
+        "sys_ui_section_87569f2d7f00000116c556f5821ae434",
+        "sys_ui_section_8757b94d7f0000011c1ae8aa30062c20",
+        "sys_ui_section_87580cdb7f00000145cff7762bcac315",
+        "sys_ui_section_a19b5086c1252a7b3632553861b5440c",
+        "sys_ui_section_a7ee48bfc1252a7b377ac0507a9a6dc8",
+        "sys_ui_section_aa8a5d967f0000010d9bd63883019d20",
+
+        "sys_ui_list_rm_epic_rm_epic_scrum",
+        "sys_ui_list_rm_epic_scrum_theme_scrum",
+        "sys_ui_list_rm_scrum_task_rm_story_scrum",
+        "sys_ui_list_rm_sprint_rm_release_scrum_scrum",
+        "sys_ui_list_rm_story_rm_epic_scrum",
+        "sys_ui_list_rm_story_rm_release_scrum_scrum",
+        "sys_ui_list_rm_story_rm_sprint_scrum",
+        "sys_ui_list_rm_story_scrum_theme_scrum",
+        "sys_ui_list_scrum_group_permissions_scrum_theme_scrum",
+        "sys_ui_list_scrum_user_permissions_scrum_theme_scrum",
+
+        "sys_ui_list_rm_release_scrum_scrum",
+        "sys_ui_list_rm_sprint_scrum",
+        "sys_ui_list_rm_epic_scrum",
+        "sys_ui_list_rm_story_scrum",
+        "sys_ui_list_rm_release_scrum_null",
+        "sys_ui_list_rm_sprint_null",
+        "sys_ui_list_rm_epic_null",
+        "sys_ui_list_rm_story_null",
+
+        "sys_ui_related_rm_defect_scrum",
+        "sys_ui_related_rm_doc_scrum",
+        "sys_ui_related_rm_epic_scrum",
+        "sys_ui_related_rm_release_scrum_scrum",
+        "sys_ui_related_rm_release_scrum",
+        "sys_ui_related_rm_sprint_scrum",
+        "sys_ui_related_rm_story_scrum",
+        "sys_ui_related_rm_test_scrum",
+
+        "sys_ui_related_rm_defect_null",
+        "sys_ui_related_rm_doc_null",
+        "sys_ui_related_rm_epic_null",
+        "sys_ui_related_rm_release_scrum_null",
+        "sys_ui_related_rm_release_null",
+        "sys_ui_related_rm_sprint_null",
+        "sys_ui_related_rm_story_null",
+        "sys_ui_related_rm_test_null",
+
+        "sys_ui_list_control_3f85b6907f00000135a05e41c7547354",
+        "sys_ui_section_87569f2d7f00000116c556f5821ae434",
+        "sys_ui_section_8757b94d7f0000011c1ae8aa30062c20",
+        "sys_ui_section_87580cdb7f00000145cff7762bcac315",
+        "sys_ui_section_a7ee48bfc1252a7b377ac0507a9a6dc8",
+        "sys_ui_section_aa8a5d967f0000010d9bd63883019d20",
+        "sys_ui_list_rm_story_null",
+        "sys_ui_list_rm_sprint_scrum",
+        "sys_ui_list_rm_story_scrum",
+        "sys_ui_related_rm_release_scrum_scrum",
+        "sys_ui_related_rm_sprint_scrum",
+
+        "sys_ui_section_0ffe390037412000dadaa3549dbe5d0d",
+        "sys_ui_list_rm_story_project",
+        "sys_ui_list_rm_story_sprint_planning",
+        "sys_ui_list_rm_epic_sys_ref_list",
+        "sys_ui_list_rm_story_release_backlog",
+        "sys_ui_list_control_0b28c540ef301000a7450fa3f82256a4",
+
+        "sys_app_module_0e28cb14ef941000a7450fa3f8225643",
+        "sys_app_module_0b57e8009f503100598a5bb0657fcfae",
+        "sys_app_module_b5b5b092871031003706db5eb2e3ec5b",
+        "sys_app_module_d5d3212593320200ea933007f67ffb36",
+        "sys_app_module_f0ca98ca874321003706db5eb2e3ecdd",
+        "sys_app_module_f1e8dc8a874321003706db5eb2e3ecfa",
+        "sys_app_module_2117c480ef012000a7450fa3f82256fc",
+        "sys_app_module_30154714ef941000a7450fa3f82256ef",
+        "sys_app_module_437d1419ef41200099620fa3f822560c",
+        "sys_app_module_6d691477efb42000a7450fa3f8225612",
+        "sys_app_module_5697aaa0efd41000a7450fa3f8225682",
+        "sys_app_module_876add92ef931000a7450fa3f82256c9",
+        "sys_app_module_97fd7218ef541000a7450fa3f8225648",
+        "sys_app_module_ae802859ef41200099620fa3f8225656",
+        "sys_app_module_b47c5091ef41200099620fa3f8225688",
+        "sys_app_module_0a68918e37031000dadaa3549dbe5dd4",
+        "sys_app_module_237c98d5ef41200099620fa3f82256e5",
+        "sys_app_module_297d5419ef41200099620fa3f82256e9",
+        "sys_app_module_2b80e819ef41200099620fa3f82256a6",
+        "sys_app_module_487f9459ef41200099620fa3f82256db",
+        "sys_app_module_4c836231ef002000a7450fa3f8225612",
+        "sys_app_module_5600c718ef541000a7450fa3f8225636",
+        "sys_app_module_717d1419ef41200099620fa3f82256ed",
+        "sys_app_module_7580e499ef41200099620fa3f8225675",
+        "sys_app_module_b17e9819ef41200099620fa3f8225692",
+        "sys_app_module_db7f1099ef41200099620fa3f822564e",
+        "sys_app_module_eb7dd019ef41200099620fa3f8225611",
+
+        "sys_ui_policy_6c5665c293030200ea933007f67ffb18",
+        "sys_ui_policy_823c84a6ef271000a7450fa3f8225653",
+        "sys_ui_policy_128dc58293030200ea933007f67ffbb3",
+        "sys_ui_policy_49dc0ca093030200ea933007f67ffb0c",
+        "sys_ui_policy_830b62d6877121003706db5eb2e3ec6d",
+        "sys_ui_policy_cb2b8826ef271000a7450fa3f82256b3",
+        "sys_ui_policy_d8476e96877121003706db5eb2e3eca3",
+        "sys_ui_policy_267d5c2aef271000a7450fa3f8225636",
+        "sys_ui_policy_63a823ecefb31000a7450fa3f8225627",
+
+        "sys_ui_action_22ada00a93330200ea933007f67ffbd5",
+        "sys_ui_action_e89e773593330200ea933007f67ffbb7",
+        "sys_ui_action_f6ea06e2870321003706db5eb2e3ec7d",
+        "sys_ui_action_view_f9e0ee3393330200ea933007f67ffb38",
+        "sys_ui_action_96bd90b28f1321001a83cfd827bdee4a",
+        "sys_ui_action_c4ac45a147332100846e7eaecb9a7150",
+        "sys_ui_action_c5c37126ef202000a7450fa3f8225650",
+        "sys_ui_action_dd4398b937301000dadaa3549dbe5db8",
+        "sys_ui_action_eaaae247873321003706db5eb2e3ec61",
+        "sys_ui_action_706b5e96ef301000a7450fa3f82256a2",
+        "sys_ui_action_7c972317ff231000dadaefff0efe1e62",
+        "sys_ui_action_8aba60e6ef96200099620fa3f8225645",
+        "sys_ui_action_93d4b3423701200054b6a3549dbe5d25",
+        "sys_ui_action_d07eddaa37202000dadaa3549dbe5d46",
+        "sys_ui_action_d67cdea1c32030003d2ae219cdba8f60",
+        "sys_ui_action_db07e836c320310028d7d56bc3d3ae2c",
+        "sys_ui_action_e2018d4237502000dadaa3549dbe5d32",
+        "sys_ui_action_ee01494237502000dadaa3549dbe5dec",
+
+        "sysrule_view_203b7ce58f3221001a83cfd827bdee67",
+        "sysrule_view_43bdcd758f3221001a83cfd827bdee78",
+        "sysrule_view_522cfce58f3221001a83cfd827bdeeb6",
+        "sysrule_view_6b8dcd758f3221001a83cfd827bdee3b",
+        "sysrule_view_9c4c79709f203100598a5bb0657fcf7d",
+
+        "sys_script_client_3d260d71873221003706db5eb2e3ec47",
+        "sys_script_client_f086b853873121003706db5eb2e3ec11",
+        "sys_script_client_cdf24c2493030200ea933007f67ffb90",
+        "sys_script_client_e1ea25e193002200ea933007f67ffbff",
+
+        "sys_script_2cc257b0373321001a8326877e41f1d0",
+        "sys_script_235ccb809f203100598a5bb0657fcfea",
+        "sys_script_3a06ffd59f322100598a5bb0657fcf40",
+        "sys_script_6940d94fef902000a7450fa3f8225689",
+        "sys_script_b0490d9047103100846e7eaecb9a7165",
+        "sys_script_c5dcb4f09f203100598a5bb0657fcffb",
+        "sys_script_21d6b274ef202000a7450fa3f822565d",
+        "sys_script_8cd24091ef52200099620fa3f8225619",
+        "sys_script_9f298c85efa1200099620fa3f82256ba"
+        ];
+
+        var records = [];
+        
+        recordsToDelete.forEach(function(record) {
+            var gr = getUpdateRecord(record);
+            if (gr.next()) {
+                var metadata = getMetadata(record);
+                if (metadata.next()) {
+                    var sysClassName = metadata.getDisplayValue('sys_class_name');
+                    var recordsMap = getRecordsMap(sysClassName);
+                    recordsMap.items.push({
+                        name: gr.getValue('name'),
+                        modified: true,
+                        updateSysId: gr.getValue('sys_id'),
+                        table: metadata.getValue('sys_class_name'),
+                        sysId: metadata.getValue('sys_id')
+                    });
+                }
+            }
+        });
+
+        function getRecordsMap(sysClassName) {
+            for (var i = 0; i ${AMP}lt; records.length; ++i) {
+                if (records[i]['type'] == sysClassName)
+                    return records[i];
+            }
+            var temp = {'type': sysClassName, items: []};
+            records.push(temp);
+            return temp;
+        }
+        
+        function getUpdateRecord(name) {
+            var gr = new GlideRecord('sys_update_xml');
+            gr.addQuery('name', name);
+            gr.query();
+            return gr;
+        }
+        
+        function getMetadata(name) {
+            var gr = new GlideRecord('sys_metadata');
+            gr.addQuery('sys_update_name', name);
+            gr.query();
+            return gr;
+        }
+
+        records;
+    &lt;/g2:evaluate&gt;
+    &lt;div class="container-fluid"&gt;
+        &lt;h1 style="margin-bottom:0;color: #343D47;"&gt;Agile 2.0 Upgrade Diagnostics&lt;/h1&gt;
+        &lt;p style="color:#485563;margin-bottom:25px;font-size: 14px;"&gt;This page displays the list of existing artifacts that have been modified both in Agile Development 2.0 plugin and this instance&lt;/p&gt;
+       &lt;j2:if test="$[jvar_updates.length == 0]"&gt;
+            &lt;p style="color:#485563;margin-bottom:25px;font-size: 16px;"&gt;No changes on this instance conflict with Agile Development 2.0 plugin&lt;/p&gt;
+        &lt;/j2:if&gt;
+       &lt;j2:if test="$[jvar_updates.length &amp;gt; 0]"&gt;
+            &lt;j2:forEach var="jvar_update" items="$[jvar_updates]"&gt; 
+                &lt;div class="panel panel-default" style="border-color: #E6E8EA;"&gt;
+                    &lt;div class="panel-heading" style="border-color: transparent;padding: 15px;"&gt;
+                        $[jvar_update.type]
+                    &lt;/div&gt;
+                    &lt;div class="panel-body"&gt;
+                        &lt;j2:forEach var="jvar_update_item" items="$[jvar_update.items]"&gt;
+                            &lt;j2:if test="$[jvar_update_item.modified]"&gt;
+                                &lt;div&gt;
+                                &lt;span class="icon-cross-circle" style="margin-right: 5px; font-size: 16px;color: #F95050;"&gt;&lt;/span&gt;&lt;a target="_blank" href="$[jvar_update_item.table].do?sys_id=$[jvar_update_item.sysId]" style="color: #485563;"&gt;$[jvar_update_item.name]&lt;/a&gt;
+                                    &lt;a style="float:right;" target="_blank" href="sys_update_xml.do?sys_id=$[jvar_update_item.updateSysId]"&gt;${gs.getMessage('View Update')}&lt;/a&gt;
+                                &lt;/div&gt;
+                            &lt;/j2:if&gt;
+                        &lt;/j2:forEach&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/j2:forEach&gt; 
+        &lt;/j2:if&gt;
+    &lt;/div&gt;
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;$agile_diagnostics&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2018-10-25 06:59:40&lt;/sys_created_on&gt;&lt;sys_id&gt;0069876ec1512300964f4bdf435a1f92&lt;/sys_id&gt;&lt;sys_mod_count&gt;53&lt;/sys_mod_count&gt;&lt;sys_name&gt;$agile_diagnostics&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_0069876ec1512300964f4bdf435a1f92&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-11-02 16:08:05&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+<payload_hash>-366068762</payload_hash>
+<remote_update_set display_value="Agile Diagnostics">1c64165ddb2123006fc8ff041d961999</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2018-11-02 16:11:02</sys_created_on>
+<sys_id>ec64965ddb2123006fc8ff041d96190f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>166d52e7d650000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2018-11-02 16:11:02</sys_updated_on>
+<table/>
+<target_name>$agile_diagnostics</target_name>
+<type>UI Page</type>
+<update_domain>global</update_domain>
+<update_guid>1db35e99b06d23008c01f02a56045e3a</update_guid>
+<update_guid_history>1db35e99b06d23008c01f02a56045e3a:-366068762,6ca39a995b6d23005f23844de48a7ff0:-619520058,2a031299606d2300738f15d080f2c890:-366068762,ae6de741bbe52300652e8fe5d92f36a2:1148241224,601d23018ee52300ac13c037734faf97:-262934342,f9fcabcdbca52300d1092fef9f419fc1:-1742398032,395b2f0dc3a52300e2c3d83d4e12e3aa:781490426,c03beb0de6a52300499089ae4c588b24:-1678777080,720beb0d02a5230025b688c26212193a:1831758954,fbd55f05eca52300621c4568bb6c62f7:-187297190,9a5dcbcdee652300f0f8e2a7569764f1:-2086959295,3f1d07cdc4652300c9a821614aac7c66:276700269,ddec07cd7b652300b07fb959adcec95d:-1699869989,56bc03cd7965230031f79d2055fbefc0:-1711130534,128c8f8dda652300d6e029f3c9d11d77:-1269312832,db4cc78d426523007a5836b47cab01d8:1301822489,bd0ccf4d4365230015f306968f4b3943:-1370870823,3ceac34d00652300b4bad8ff9f33e62c:-1838805767,4b1ac34d36652300fb4da9cc3cfc7f26:623095331,6a0a434d616523004ff48cb94e3b9046:1668754553,8be9434dc1652300ca669638f03be51b:1831224450,0cb94f0d696523008f87b515d78df5ae:-1838805767,c889cb0d4d652300bf06b0e5b8adf9ba:623095331,d559870d5a6523002065229990d3b41e:-713294467,7029870dde6523003b46c0183a68c017:177827625,89b8830dd56523001e6a421525ad9fa8:-874211440,fb78830d3a6523003ccf0c30780a8bcb:279630365,638387495865230029ae673df411913e:1211878989,6f53874997652300f701130096504238:1324226912,9033c349676523005e31fbc4680d835f:-660346499,32f203490b652300ec6855d05c66d27b:-1720750401,85c2034939652300108fde66fe866171:1635906670,3e1532413d65230013c0ba32a3b0a214:983571815,409332c9f1652300c0c826a674eae5ff:540754289,0101f249e4652300d6745d35bacc6cea:242301448,ffb03249ce652300824cd38fbec761f1:-1208924550,5860fe0966652300aa67a9854a97b131:1551779676,a940ba09a5652300a58a4f97474002d7:-1648474918,d97f660986652300ef68f10662e06d8e:-535667647,43bde2c5316523004b520335fdd2f000:1373973340,fbbc26852f65230002a79f8934a3121c:-1363066272,ed8c2285ea65230054970c13df45b4a8:1449473572,2f2c6e45f8652300612fa835de0901ff:-1842444776,24fbaa4572652300d92436ec400cb0af:-1365896768,bbabaa45d3652300fb32117f0e6a5137:1514056618,6a6b66051c652300cffced6652df3d41:-1946294273,1979e205b86523001dc2e45c2eb9e973:898698817,dc59e2056765230012d1c5109d3b3723:1842095004,5af766c1ae652300dfb65cfc41a8f64c:-8751785,3736ea417e65230022f37229387b0fb6:-1616332703,a8cb5e8908252300e84c91511d71eee4:1668355551,cdea16494c25230014ab62182f4966a9:-808769577,29d99609a1252300dc9e4925b153cb47:518692652,7179476ee851230013b849b2124061e5:329314459</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

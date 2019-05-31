@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2016-05-31 17:04:30">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Liked having the email client icon right on your forms in Fuji? This yanks the email client button out from the (...) menu, and places it back where it belongs.</description>
+<inserted/>
+<name>UI16: Email icon on form headers</name>
+<origin_sys_id/>
+<release_date/>
+<remote_sys_id>e694b8a00fbf5200b14545ace1050e78</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin_SHARE</sys_created_by>
+<sys_created_on>2016-05-31 17:04:30</sys_created_on>
+<sys_id>8b99b4640fbf5200b14545ace1050ed8</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin_SHARE</sys_updated_by>
+<sys_updated_on>2016-05-31 17:04:30</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_6214f4a00fbf5200b14545ace1050e85</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;false&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;false&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;task&lt;/collection&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;Let scratchpad know if we're using UI16&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[g_scratchpad.isConcourse = gs.getPreference('use.concourse');]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin_SHARE&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-05-31 16:42:20&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;6214f4a00fbf5200b14545ace1050e85&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;Let scratchpad know if we're using UI16&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_6214f4a00fbf5200b14545ace1050e85&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin_SHARE&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-05-31 16:55:09&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before_display&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=6214f4a00fbf5200b14545ace1050e85"/&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="UI16: Email icon on form headers">8b99b4640fbf5200b14545ace1050ed8</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin_SHARE</sys_created_by>
+<sys_created_on>2016-05-31 17:04:30</sys_created_on>
+<sys_id>0f99b4640fbf5200b14545ace1050ed8</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin_SHARE</sys_updated_by>
+<sys_updated_on>2016-05-31 17:04:30</sys_updated_on>
+<table>task</table>
+<target_name>Let scratchpad know if we're using UI16</target_name>
+<type>Business Rule</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_script_client_c0e5e4e80f7f5200b14545ace1050e60</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;true&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description&gt;For UI16, pulls the email client button out of the (...) menu and places it back on the form.&amp;#13;
+Requires g_scratchpad.isConcourse to be populated in a display business rule.&lt;/description&gt;&lt;field&gt;active&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;messages/&gt;&lt;name&gt;UI16: email icon back on form&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onLoad() {
+	if (!!!g_scratchpad.isConcourse || g_form.isNewRecord()) // http://stackoverflow.com/questions/784929/what-is-the-not-not-operator-in-javascript
+		return;
+	
+	var navbarNode = document.getElementsByClassName('navbar-right')[0];
+	var emailNode = document.getElementById('email_client_open');	
+	if (emailNode) {
+		// just a bit of optional styling:
+		emailNode.innerHTML = '';
+		emailNode.className += ' btn btn-icon';
+		
+		navbarNode.insertBefore(emailNode, navbarNode.childNodes[0]);
+	}
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin_SHARE&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-05-31 15:47:49&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;c0e5e4e80f7f5200b14545ace1050e60&lt;/sys_id&gt;&lt;sys_mod_count&gt;24&lt;/sys_mod_count&gt;&lt;sys_name&gt;UI16: email icon back on form&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_c0e5e4e80f7f5200b14545ace1050e60&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin_SHARE&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-05-31 16:55:30&lt;/sys_updated_on&gt;&lt;table&gt;task&lt;/table&gt;&lt;type&gt;onLoad&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="UI16: Email icon on form headers">8b99b4640fbf5200b14545ace1050ed8</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin_SHARE</sys_created_by>
+<sys_created_on>2016-05-31 17:04:30</sys_created_on>
+<sys_id>4f99b4640fbf5200b14545ace1050ed8</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin_SHARE</sys_updated_by>
+<sys_updated_on>2016-05-31 17:04:30</sys_updated_on>
+<table>task</table>
+<target_name>UI16: email icon back on form</target_name>
+<type>Client Script</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value=""/>
+<category>customer</category>
+<comments/>
+<name>sys_trigger_1cd433f16f85210015244035eb3ee411</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_trigger"><sys_trigger action="INSERT_OR_UPDATE"><application/><calendar/><claimed_by/><document/><document_key/><error_count>0</error_count><job_context/><job_id display_value="RunScriptJob">81c92ce9c0a8016400e5f0d2f784ea78</job_id><last_error/><log>false</log><maintenance>false</maintenance><max_drift/><name>Share Install Logger</name><next_action>2014-01-01 23:29:16</next_action><parent/><priority>100</priority><processing_duration>0</processing_duration><repeat/><run_count>0</run_count><run_dayofmonth/><run_dayofweek>1</run_dayofweek><run_month>1</run_month><run_time>1970-01-01 08:00:00</run_time><run_weekinmonth>1</run_weekinmonth><script>var logClient = new GlideSimpleHTTPClient('https://share.servicenow.com/installLogger.do');&#13;
+var query_string = 'installed_by=' + gs.getUserName() + '&amp;instance_name=' + gs.getProperty('instance_name') + '&amp;artifact=c55ab020137712404e8cd4a76144b0f0&amp;content=855a3420137712404e8cd4a76144b01f';&#13;
+gs.log('posting to: ' + query_string);&#13;
+logClient.get(query_string);</script><state>0</state><sys_created_by/><sys_created_on/><sys_id>1cd433f16f85210015244035eb3ee411</sys_id><sys_mod_count/><sys_updated_by/><sys_updated_on/><system_id/><trigger_class>DEFAULT</trigger_class><trigger_type>0</trigger_type></sys_trigger></record_update>]]></payload>
+<remote_update_set display_value="UI16: Email icon on form headers">8b99b4640fbf5200b14545ace1050ed8</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>bharath.prathipati@snc</sys_created_by>
+<sys_created_on>2014-06-02 22:30:02</sys_created_on>
+<sys_id>b31573f16f85210015244035eb3ee470</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>bharath.prathipati@snc</sys_updated_by>
+<sys_updated_on>2014-06-02 22:30:02</sys_updated_on>
+<table/>
+<target_name>Share Install Logger</target_name>
+<type>Schedule Item</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml></unload>
