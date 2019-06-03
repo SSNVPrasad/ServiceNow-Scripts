@@ -1,0 +1,7 @@
+function onSubmit() {
+   //Type appropriate comment here, and begin script below
+   if(g_form.getValue('phone').match(/[^\d, ]/g) != null){
+	   alert(' Illegal characters in phone number, only numbers, commas and spaces allowed.');
+	   return false;
+   }
+}
