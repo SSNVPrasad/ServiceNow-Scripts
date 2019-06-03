@@ -1,0 +1,25 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+
+		var startDate = g_form.getValue('start_date_time');
+		var endDate = g_form.getValue('end_date_time');
+	
+	
+	var ajax = new GlideAjax('global.ClientDateTimeUtils');
+	ajax.addParam('sysparm_name', 'getDateTimeDiff');
+	ajax.addParam('sysparm_fdt', startDate);
+	ajax.addParam('sysparm_sdt', endDate);
+	ajax.addParam('sysparm_difftype', 'second');
+		ajax.getXMLAnswer(function(answer){
+	 if (answer <= 0) {
+	 g_form.showFieldMsg('end_date_time', 'End Date should be after the Start Date', 'info');
+	 }
+				else {
+		g_form.hideFieldMsg('start_date_time');
+		g_form.hideFieldMsg('end_date_time');
+	}
+	});
+   
+}
