@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+    <g:evaluate>
+        var usersValue = RP.getParameterValue('sysparm_users');
+        //var users = usersValue.split(',');
+		
+        var user = new GlideRecord('x_waem2_vms_m2m_external_users_visits');
+        user.addActiveQuery();
+        user.addQuery('sys_id','IN',usersValue);
+        user.query();
+		
+        var userStr = new GlideRecord('x_waem2_vms_m2m_external_users_visits');
+        userStr.addActiveQuery();
+        userStr.addQuery('sys_id','IN',usersValue);
+        userStr.query();
+		
+        var date = new GlideDate();
+        var msg = "Do you want to print visitor badges for all selected guests? ";
+		
+        while(userStr.next()) {
+			msg += userStr.external_user.u_name;
+			if(userStr.hasNext()) {
+				msg += ', ';
+			}
+        }
+    </g:evaluate>
+
+    <script>
+    if (confirm('${msg}')) {
+        window.print();
+    }
+    </script>
+
+    <j:while test="${user.next()}">
+        <div class="label-boarder">
+            <div class="label-container">
+			<div class="wm-header-image"> 
+				
+<img src="watermark_logo.jpgx" style="visibility:hidden;" /> 
+</div>
+                    <div class="wm-header-label">
+                        VISITOR
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="wm-body">
+                        <div class="wm-body-bold">
+                            ${user.external_user.u_name}
+                        </div>
+                        <j:if test="${user.external_user.u_company.toString() != ''}">
+                            <div>
+                                ${user.external_user.u_company.name.toString()}
+                            </div>
+                        </j:if>
+                        <div>
+                            ${date}
+                        </div>
+                        <div>
+                            Host: ${user.visit.host.name}
+                        </div>
+                        <div class="wm-body-bold">
+                            ** Escort Required **
+                        </div>
+                    </div>
+                    <j:if test="${user.hasNext()}">
+                        <div class="wm-footer"></div>
+                    </j:if>
+                </div>
+            </div>
+    </j:while>
+
+    <style>
+	/* Adjust to move label around so that the entire thing fits on the prited page (label) */
+    .label-boarder {
+        padding: 10px 25px 10px;
+    }
+
+    .label-container {
+        width: 210px;
+        /*transform: scale(0.5, 0.5);*/
+        height: 200px;
+        height: auto;
+        font-size: 15px;
+        padding: 5px 5px 10px;
+        /*Play with the above styles to adjust sizing*/
+        border: 1px solid black;
+        border-radius: 5px;
+        text-align: center;
+        font-family: SANS-SERIF;
+    }
+
+    .wm-body div {
+        line-height: 17.5px;
+    }
+
+    .wm-header-image img {
+        display: block;
+        visibility: visible;
+        height: auto;
+        width: 35px;
+    }
+
+    .wm-header-label {
+        text-align: right;
+        float: right;
+        height: 32.5px;
+        line-height: 25px;
+        margin-top: -25px;
+		font-size: 18px;
+		font-weight: bold;
+    }
+
+    //.wm-body {
+    //    margin-top: 1px;
+    //}
+
+    .wm-body-bold {
+        font-size: 16px;
+		font-weight: bold;
+    }
+
+    @media print {
+        .wm-footer {
+            page-break-after: always;
+        }
+    }
+    </style>
+</j:jelly>
