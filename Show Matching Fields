@@ -1,0 +1,22 @@
+//Highlight similar fields using DOM Manipulation - validate functionality on upgrade
+function onLoad() {
+	var vmGa = new GlideAjax('VisitorManagementAJAX');
+	vmGa.addParam('sysparm_name', 'returnMatchingFields');
+	vmGa.addParam('poi_id', g_form.getUniqueValue());
+	vmGa.getXMLAnswer(function(answer) {
+		answer = JSON.parse(answer);
+		
+		if (answer) {
+			answer.forEach(function(elem) {
+				var field = g_form.getControl('x_waem2_vms_m2m_poi_external_user.'+[elem]);
+				var readOnlyField = g_form.getControl('sys_readonly.x_waem2_vms_m2m_poi_external_user.'+[elem]);
+				
+				if (field)
+					field.style.backgroundColor = 'lightgreen';
+				
+				if (readOnlyField)
+					readOnlyField.style.backgroundColor = 'lightgreen';
+			});
+		}
+	});
+}
