@@ -1,0 +1,10 @@
+function onLoad() {
+	
+g_form.addDecoration('u_guest_1', 'icon-star-empty', 'Guest');
+g_form.addDecoration('u_guest_2', 'icon-star-empty', 'Guest');
+g_form.addDecoration('u_guest_3', 'icon-star-empty', 'Guest');
+g_form.addDecoration('u_guest_4', 'icon-star-empty', 'Guest');
+g_form.addDecoration('u_guest_5', 'icon-star-empty', 'Guest');
+g_form.addDecoration('u_guest_6', 'icon-star-empty', 'Guest');
+
+}
