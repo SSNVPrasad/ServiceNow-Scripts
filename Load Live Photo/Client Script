@@ -1,0 +1,15 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (newValue === '') {
+        horse_setLiveProfilePhoto('');
+        return;
+    }
+    
+    // Call back to the server to get the path of the user's profile picture
+    var ga = new GlideAjax('horse_LiveProfile');
+    ga.addParam('sysparm_name','getPhoto');
+    ga.addParam('sysparm_horse', newValue);
+    ga.getXMLAnswer(function(answer){
+        horse_setLiveProfilePhoto(answer + '');
+    });
+    
+}
