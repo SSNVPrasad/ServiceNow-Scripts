@@ -1,0 +1,9 @@
+(function executeRule(current, previous /*null when async*/) {
+
+	// Concatenate Entity Code and Location Code to create Location Code field to be read by Data Warehouse and Tableau.	
+	var entityCode = current.u_entity_code.u_entity_code;	
+	var locationCode = current.u_location_code.code;	
+	
+current.u_entity_location_combined = entityCode + "-" + locationCode;
+	
+})(current, previous);
