@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+    <script>
+        function horse_setLiveProfilePhoto(photo_path){
+            jslog("Setting photo to: " + photo_path);
+            try{
+                // Get the div from below so we can set the contents to the image
+                var photo_div = document.getElementById('live_horse_profile_photo');
+                if(photo_path){
+                    // This uses the thumbnail size image from the Live Profile and keeps the image small on the form
+                    var photo_html = "${LT}img style='max-width: 40%;' src='" + photo_path + "?t=small'/>";
+                    // This uses the full size image that was uploaded and scales it down to fit the space. 
+                    // This will generally produce a larger image and depending on the form, images, and 
+                    // space available, this may be a preferable option.
+                    //var photo_html = "${LT}img style='max-width: 40%;' src='" + photo_path + "'/>";
+                    photo_div.innerHTML = photo_html;
+                } else {
+                    // No image was specified so clear out the div
+                    photo_div.innerHTML = '';
+                }
+            } catch(e){
+                jslog("Unable to update photo: " + e.message);
+            }
+        }
+    </script>
+    <div style="text-align: center;" id="live_horse_profile_photo"></div>
+</j:jelly>
