@@ -1,0 +1,9 @@
+//Condition = current.u_request_id == '<REQUEST NAME>' && current.requested_for != ''
+
+(function onBefore(current, previous) {
+
+var director = current.u_approver;
+	
+	current.watch_list = director;
+
+})(current, previous);
