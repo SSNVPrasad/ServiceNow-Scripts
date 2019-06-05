@@ -1,0 +1,23 @@
+(function executeRule(current, previous /*null when async*/) { 
+
+var gr = new GlideRecord('vm_vendor_contact');
+gr.initialize();
+gr.address = current.u_street;
+gr.alternate_phone = current.u_mobile_phone;
+gr.company = current.u_company;
+gr.email = current.u_email;
+gr.fax = current.u_fax;
+gr.name = current.u_name;
+gr.primary_phone = current.u_work_phone;
+gr.title = current.u_title;
+gr.u_alternate_company = current.u_alternate_company;
+gr.u_city = current.u_city;
+gr.u_country = current.u_country;
+gr.u_evergate_contact_reference = current.sys_id; // Field to relate Evergate Contact and Vendor Contact on table "vm_vendor_contact"
+gr.u_notes = current.u_notes;
+gr.u_phone = current.u_phone;
+gr.u_state = current.u_state;
+gr.u_zip = current.u_postal_code; 
+gr.insert();
+	
+})(current, previous);  
