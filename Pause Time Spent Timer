@@ -1,0 +1,43 @@
+function onLoad() {
+    if(g_form.getElement('u_time_spent')){
+		toggleTimer('u_time_spent');
+	}
+}
+ //Set the color of the backbround on the timer elements
+$('element.<table name>.u_time_spent').select('.form-control').each(function(elmt) {
+     elmt.style.backgroundColor = 'azure';
+});
+
+function toggleTimer(fieldName,timerVal){
+    try{
+        //Get the necessary timer elements for fieldName given
+        var timerEl = $('element.' + g_form.tableName + '.' + fieldName);
+        if (timerEl != null){
+            //Make sure script does not break if field not present
+            var timerPause = timerEl.select('input[id*=paused]')[0];
+            var timerImg = timerEl.select('img[src*=images/timer_]')[0];
+            
+            //Toggle the timer
+            if(timerPause.value == 'false'){
+                timerPause.value = 'true';
+                 var timerIcon = $('link.' + g_form.tableName + '.' + fieldName);
+                 timerIcon.removeClassName('icon-stop');
+                 timerIcon.addClassName('icon-play');
+                 //Change any title tags
+                timerIcon.setAttribute('data-original-title', 'Start Timer');
+            }
+            else{
+                timerPause.value = 'false';
+                 var timerIcon = $('link.' + g_form.tableName + '.' + fieldName);
+                 timerIcon.removeClassName('icon-play');
+                 timerIcon.addClassName('icon-stop');
+                 //Change any title tags
+                timerIcon.setAttribute('data-original-title', 'Pause Timer');
+            }
+            //Reset the timer to timerVal given
+            if(timerVal){
+                g_form.setValue(fieldName,timerVal);
+            }
+        }
+    }catch(e){}
+}
