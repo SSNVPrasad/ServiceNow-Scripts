@@ -1,0 +1,14 @@
+function onCancel() {
+	GlideDialogWindow.get().destroy();
+	return false;
+}
+
+function onSubmit() {
+	var userId = gel("user");
+	
+	if (!companyId){
+		alert("Please Select a User");
+		return false;
+	}
+	return true;
+}
