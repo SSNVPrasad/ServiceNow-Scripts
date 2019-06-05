@@ -1,0 +1,29 @@
+//Condition = current.state.changesTo('requested')
+
+//Check to see if user has previously approved
+approveDuplicateApproval();
+
+function approveDuplicateApproval(){
+    //Must have link to record being approved
+    if(current.document_id || current.sysapproval){
+        //Query for approval records for this user/record
+        var app = new GlideRecord('sysapproval_approver');
+        //Handle empty document_id and sysapproval fields
+        if(!current.document_id.nil()){
+            app.addQuery('document_id', current.document_id);
+        }
+        else if(!current.sysapproval.nil()){
+            app.addQuery('sysapproval', current.sysapproval);
+        }
+        app.addQuery('approver', current.approver);
+        app.addQuery('state', 'approved');
+        //Optionally restrict to current workflow
+        //app.addQuery('wf_activity.workflow_version', current.wf_activity.workflow_version);
+        app.query();
+        if(app.next()){
+            //If previous approval is found set this approval to 'approved'
+            current.state = 'not_required';
+            current.comments = "Approval marked by system as 'Not Longer Required' due to a previous approval on the same record by the same user.";
+        }
+    }
+}
