@@ -1,0 +1,61 @@
+//Onclick = confirmUpdate()
+//Condition = gs.hasRole('admin_team') && current["new"].canWrite()
+
+function confirmUpdate(){
+   if(!g_form.getControl('new').changed){
+      alert("Please enter a new value into the 'New' field.");
+      return false;
+   }
+   if(confirm('Are you sure you want to permanently update this history line and all corresponding audit history?\n\nTHIS ACTION CANNOT BE UNDONE!')){
+      //Call the UI Action and skip the 'onclick' function
+      gsftSubmit(null, g_form.getFormElement(), 'update_history_line'); //MUST call the 'Action name' set in this UI Action
+   }
+   else{
+      return false;
+   }
+}
+
+//Code that runs without 'onclick'
+//Ensure call to server-side function with no browser errors
+if(typeof window == 'undefined')
+   updateHistoryLine();
+
+function updateHistoryLine(){
+   var fieldVal = current["new"];
+   var fieldName = current.field;
+   var fieldLabel = current.label.toString();
+   var setID = current.set.id.toString();
+   
+   //Query for and update the 'sys_audit' record
+   var aud = new GlideRecord('sys_audit');
+   aud.addQuery('documentkey', current.set.id);
+   aud.addQuery('fieldname', fieldName);
+   aud.addQuery('internal_checkpoint', current.internal_checkpoint);
+   aud.query();
+   if(aud.next()){
+      aud.newvalue = fieldVal;
+      aud.update();
+   }
+   
+   //Query for and update the 'sys_journal_field' record (if applicable)
+   var je = new GlideRecord('sys_journal_field');
+   je.addQuery('element_id', current.set.id);
+   je.addQuery('element', fieldName);
+   je.addQuery('sys_created_on', current.update_time);
+   je.query();
+   if(je.next()){
+      je.value = fieldVal;
+      je.update();
+   }
+   
+   //Refresh the history set
+   if(typeof GlideHistorySet != 'undefined')
+      GlideHistorySet(current.set.id.getRefRecord()).refresh();
+   else
+      Packages.com.glide.audit.HistorySet(current.set.id.getRefRecord()).refresh();   
+   //Set redirect and info message for the new set record
+   var newSet = new GlideRecord('sys_history_set');
+   newSet.get('id', setID);
+   gs.addInfoMessage(fieldLabel + " entry '" + fieldVal + "' updated.\nIf audit history list is empty, return to the parent record and select 'History -> List' to regenerate.");
+   action.setRedirectURL(newSet);
+}
