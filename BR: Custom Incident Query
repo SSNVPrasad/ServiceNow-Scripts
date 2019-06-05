@@ -1,0 +1,5 @@
+if (!gs.hasRole("itil") && !gs.hasRole("admin_team") && !gs.hasRole("security_systems_non_technology") && gs.isInteractive()) {
+  var u = gs.getUserID();
+  var qc = current.addQuery("caller_id", u).addOrCondition("opened_by", u).addOrCondition("watch_list", "CONTAINS", u);
+  gs.print("query restricted to user: " + u);
+}
