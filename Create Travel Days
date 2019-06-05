@@ -1,0 +1,31 @@
+/*
+ * Create task_time_worked records from the related Travel Days field
+ */
+createTravelDays();
+
+function createTravelDays() {
+     //updated task, take value of Travel Days field
+    if (current.operation() == 'update') {
+        var traveldays = current.u_travel_days_3.getDisplayValue();
+
+    }
+    if (traveldays == 0) 
+        return;
+
+/* Create new Time Worked record
+ * Use value of Additional GST 2 field on form
+ * Use value of current task record SysID
+ * Place Travel Days value in the Time Worked field
+ * Set comments if applicable from related list
+ * Insert the record
+*/
+	
+    var td = new GlideRecord('task_time_worked');
+    td.user = current.u_additional_gst_2;
+    td.task = current.sys_id;
+    td.u_travel_days.setValue(traveldays);
+    if (current.comments.changes()) {
+        td.comments = current.comments.getJournalEntry(1);
+    } 
+    td.insert();
+}
