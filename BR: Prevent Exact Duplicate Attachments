@@ -1,0 +1,18 @@
+//sys_attachment table
+
+function onBefore(current, previous) {
+
+     var attach = new GlideRecord('sys_attachment');
+
+		attach.addQuery('table_sys_id', current.table_sys_id);
+		attach.addQuery('table_name', current.table_name);
+		attach.addQuery('file_name', current.file_name);
+		attach.addQuery('content_type', current.content_type);
+		attach.addQuery('size_bytes', current.size_bytes);
+		attach.query();
+
+	if(attach.next()){
+	current.setAbortAction(true);
+	}
+
+}
