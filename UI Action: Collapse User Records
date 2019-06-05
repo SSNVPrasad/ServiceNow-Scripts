@@ -1,0 +1,15 @@
+//Onclick = showCollapseUserDialog();
+//Condition = gs.hasRole('admin')
+
+function showCollapseUserDialog() {
+	var title = getMessage("Select Collapse To User");
+	var dialogClass = GlideModal ? GlideModal : GlideDialogWindow;
+	var dialog = new dialogClass("collapse_user_dialog");
+	dialog.setTitle(title);
+	dialog.setPreference('sysparm_table', g_list.getTableName());
+	dialog.setPreference('sysparm_sys_id_list', g_list.getChecked().toString());
+	dialog.setPreference('sysparm_filter',g_list.getQuery(true,true,true,true));
+	dialog.setWidth(500);
+	dialog.render();
+
+}
