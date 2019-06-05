@@ -1,0 +1,24 @@
+//Condition = current.sys_class_name =='u_gst_aar' && current.u_sp_id.nil()
+
+var sp = new GlideRecord("u_gst_security_plans");
+sp.short_description = ("SP - " + current.short_description);
+sp.description = current.description;
+sp.u_gst_lead = current.u_gst_lead;
+//sp.u_gst_2 = current.u_additional_gst;
+//sp.u_gst_3 = current.u_additional_gst_2;
+//sp.u_gst_4 = current.u_additional_gst_3;
+//sp.u_gst_5 = current.u_additional_gst_4;
+//sp.u_gst_6 = current.u_additional_gst_5;
+//sp.u_gst_7 = current.u_additional_gst_6;
+sp.u_trip_date = current.u_trip_date;
+sp.assignment_group = current.assignment_group;
+sp.assigned_to = current.assigned_to;
+sp.sys_domain = current.sys_domain;
+var sysID = sp.insert();
+
+current.u_sp_id = sysID;
+var mySysID = current.update();
+
+gs.addInfoMessage("Security Plan " + sp.number + " created");
+action.setRedirectURL(sp);
+action.setReturnURL(current);
