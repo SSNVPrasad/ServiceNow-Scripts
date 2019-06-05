@@ -1,0 +1,7 @@
+var cis = current.u_additional_cis.toString();
+var cistr = cis.split(',');
+for(var i = 0; i<cistr.length; i++) {
+
+	if(!ChangeCollisionHelper.isCiInAffectedCis(cistr[i], current.sys_id)) {
+		ChangeCollisionHelper.addCiToChangeAffectedCis(cistr[i], current.sys_id); 
+}}
