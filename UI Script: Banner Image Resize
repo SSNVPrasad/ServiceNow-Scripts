@@ -1,0 +1,9 @@
+addLoadEvent(bannerchange);
+
+function bannerchange(){ 
+ 
+ if(window.jQuery){
+ $j('#mainBannerImage').css('zoom','160%');
+
+ }
+}
