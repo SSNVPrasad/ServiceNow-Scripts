@@ -1,0 +1,16 @@
+//table = sysapproval_approver
+//Condition = current.state == 'not_required'
+
+// Run any workflows for our parent so they can check the approval states
+runWorkflow_userApprove();
+
+function runWorkflow_userApprove() {
+   var id = current.sysapproval.nil() ? current.document_id : current.getValue('sysapproval');
+   var table = current.source_table.nil() ? 'task' : current.source_table;
+   if (id != null && table != null ) {
+      var gr = new GlideRecord(table);
+      if (gr.get(id)) {
+           new Workflow().runFlows(gr, 'update');
+        }
+   }
+}
