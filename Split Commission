@@ -1,0 +1,22 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	
+	if (isLoading || newValue === '') {
+		return;
+	}
+	
+	var ca1 = g_form.getValue('u_commission_amount');
+	ca1 = ca1.split(";").pop();
+	var ca2 = g_form.getValue('u_commission_amount_2');
+	ca2 = ca2.split(";").pop();
+	var total = parseCurrency(ca1) + parseCurrency(ca2);
+	total = total.toFixed(2);
+	total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		//alert("tc: " + tc);
+		//alert("ca: " + ca);
+		//alert("total: " + total);
+		g_form.setValue('u_total_commission', total);
+		
+		function parseCurrency(num) {
+			return parseFloat( num.replace( /,/g, '') );
+		}
+	}
