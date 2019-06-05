@@ -1,0 +1,67 @@
+function onLoad() {
+	var group = g_form.getReference('assignment_group');//get the value of group	   
+    
+	if (group.name == "Access")/*if group is Access, then:*/ {
+		  g_form.removeOption('state', '-5');
+			g_form.removeOption('state', '1');
+		  g_form.removeOption('state', '-6'); 
+		  g_form.removeOption('state', '-4'); 
+		  g_form.removeOption('state', '2');
+		  g_form.removeOption('state', '4');
+			g_form.removeOption('state', '15');
+			g_form.removeOption('state', '16');
+			g_form.removeOption('state', '17');
+			g_form.removeOption('state', '18');
+			g_form.removeOption('state', '12');
+			
+  }
+
+   else {
+	    g_form.removeOption('state', '14');
+   }
+}
+
+//OR
+
+function onLoad() {
+	var group = g_form.getReference('assignment_group');//get the value of group	   
+    
+	if (group.name == "Acquisitions")/*if group is Acquisitions, then:*/ {
+			g_form.removeOption('state', '14');
+		    g_form.removeOption('state', '-4'); 
+		   	g_form.removeOption('state', '4');
+			g_form.removeOption('state', '15');
+			g_form.removeOption('state', '16');
+			g_form.removeOption('state', '17');
+			g_form.removeOption('state', '18');
+			g_form.removeOption('state', '12');
+  }
+}
+
+//OR
+
+function onLoad() {
+	var group = g_form.getReference('assignment_group');//get the value of group	   
+    
+	if ((group.name == "Technology") || (group.name == "Helpdesk"))/*if group is Technology or Helpdesk, then:*/ {
+		    
+			g_form.removeOption('state', '-4'); 
+			g_form.removeOption('state', '-5');
+			g_form.removeOption('state', '-6');
+			g_form.removeOption('state', '12');
+			g_form.removeOption('state', '13');
+			g_form.removeOption('state', '15');
+			g_form.removeOption('state', '16');
+			g_form.removeOption('state', '17');
+			g_form.removeOption('state', '18');
+			
+  }
+
+   else {
+	        g_form.removeOption('state', '21');
+			g_form.removeOption('state', '22');
+		    g_form.removeOption('state', '23');
+		    g_form.removeOption('state', '24');
+		    g_form.removeOption('state', '25');
+   }
+}
