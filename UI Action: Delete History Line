@@ -1,0 +1,49 @@
+//Onclick = confirmDelete()
+//Condition = gs.hasRole('admin_team')
+
+function confirmDelete(){
+   if(confirm('Are you sure you want to permanently delete this history line and all corresponding audit history?\n\nTHIS ACTION CANNOT BE UNDONE!')){
+      //Call the UI Action and skip the 'onclick' function
+      gsftSubmit(null, g_form.getFormElement(), 'delete_history_line'); //MUST call the 'Action name' set in this UI Action
+   }
+   else{
+      return false;
+   }
+}
+
+//Code that runs without 'onclick'
+//Ensure call to server-side function with no browser errors
+if(typeof window == 'undefined')
+   deleteHistoryLine();
+
+function deleteHistoryLine(){
+   var fieldVal = current["new"];
+   var fieldName = current.field;
+   
+   //Query for and delete the 'sys_audit' record
+   var aud = new GlideRecord('sys_audit');
+   aud.addQuery('documentkey', current.set.id);
+   aud.addQuery('fieldname', fieldName);
+   aud.addQuery('newvalue', fieldVal);
+   aud.query();
+   if(aud.next()){
+      aud.deleteRecord();
+   }
+   
+   //Query for and delete the 'sys_journal_field' record (if applicable)
+   var je = new GlideRecord('sys_journal_field');
+   je.addQuery('element_id', current.set.id);
+   je.addQuery('element', fieldName);
+   je.addQuery('value', fieldVal);
+   je.query();
+   if(je.next()){
+      je.deleteRecord();
+   }
+   
+   //Set redirect and info message for the parent record
+   gs.addInfoMessage(current.label + " entry '" + fieldVal + "' deleted.");
+   action.setRedirectURL(current.set.getRefRecord());
+   
+   //Delete the 'sys_history_line' record
+   current.deleteRecord();
+}
