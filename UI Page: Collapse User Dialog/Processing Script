@@ -1,0 +1,10 @@
+(function updateRecords(){
+	var userGr = new GlideRecord('sys_user');
+	if(userGr.get('sys_id',user)) {
+		gs.eventQueue('sys_user.collapse_to',userGr,list,user);
+		
+		// redirect back
+		response.sendRedirect(table + "_list.do?sysparm_query="+filter);
+		gs.flushMessages();
+	}
+}());
