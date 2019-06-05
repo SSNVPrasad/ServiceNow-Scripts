@@ -1,0 +1,13 @@
+var dynamicFromAddress = Class.create();
+dynamicFromAddress.prototype = {
+    initialize: function() {
+    },
+	
+	getFromEmailForReplyButtons: function(){
+	var fromEmail = '';
+	if (current.target_table == '<TABLE NAME>'){
+		fromEmail = 'EXAMPLE <example@example.com>';
+	}
+	return fromEmail;
+}
+};
