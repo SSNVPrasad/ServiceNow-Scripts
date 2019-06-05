@@ -1,3 +1,4 @@
 Arguments to add to module link:
 &sysparm_fixed_query=active=true^assigned_toISEMPTY //This will show Active tickets with nobody assigned
 &sysparm_fixed_query=active=true^assigned_toDYNAMIC90d1921e5f510100a9ad2572f2b477fe //Example of dynamic "Assigned to Me" link
+&sysparm_fixed_query=active=true^assignment_group=b4c7295c0f57a100a32446ace1050e9f //Example of active for specific assignment group
