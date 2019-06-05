@@ -1,0 +1,11 @@
+function getMySpecificGroups(){  
+  var gr = new GlideRecord('sys_user_grmember');  
+  gr.addQuery("user", gs.getUserID());  
+  gr.addQuery("group.active", true);  
+  gr.query();  
+  var array = [];  
+  while (gr.next()) {  
+      array.push(gr.getValue('group'));  
+  }  
+  return array;  
+}  
