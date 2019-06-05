@@ -1,0 +1,13 @@
+function onChange() {
+	
+	var print_request = g_form.getValue('u_request_type');
+	if (print_request == "Print") {
+		g_form.addInfoMessage('Consult the "Reference Guide for Print Standards" to identify details for your print job description, e.g., pixel density (ppi), standard print dimensions.');
+	}
+	else {
+		if (print_request != "Print") {
+			g_form.clearMessages();
+		}
+		
+	}
+}
