@@ -1,0 +1,11 @@
+//Showing for timer elements in this example
+
+function onLoad() {
+    if(g_form.getElement('u_time_spent')){
+		toggleTimer('u_time_spent');
+	}
+}
+ //Set the color of the backbround on the timer elements
+$('element.<table name>.u_time_spent').select('.form-control').each(function(elmt) {
+     elmt.style.backgroundColor = 'azure';
+});
