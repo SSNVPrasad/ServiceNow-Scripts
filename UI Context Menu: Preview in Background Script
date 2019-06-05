@@ -1,0 +1,42 @@
+// Condition = gs.hasRole("admin")
+
+(function u_previewGlideRecordScript(){  
+  var fixedQuery = ("" + g_list.getFixedQuery()).replace("null", "");  
+  if (fixedQuery == "") {  
+  fixedQuery = ("" + g_list.getRelatedQuery()).replace("null", "");  
+  }  
+  var query = fixedQuery;  
+  var listQuery = g_list.getQuery();  
+  if (listQuery != "") {  
+  if (query == "") {  
+  query = listQuery;  
+  } else {  
+  query += "^" + listQuery;  
+  }  
+  }  
+  var newLine = "\n";  
+  var script = "(function() {" + newLine;  
+  script += "    var gr = new GlideRecord('" + g_list.tableName + "');" + newLine;  
+  if (query != "") {  
+  script += "    gr.addEncodedQuery('" + query + "');" + newLine;  
+  }  
+  script += "    //gr.setLimit(100);" + newLine;  
+  script += "    //gr.setWorkflow(false);" + newLine;  
+  script += "    //gr.autoSysFields(false);" + newLine;  
+  script += "    gr.query();" + newLine;  
+  script += "    while (gr.next()) {" + newLine;  
+  script += "        " + newLine;  
+  script += "    }" + newLine;  
+  script += "})();";  
+  
+  // open the Background Scripts page in a new window  
+  var win = window.open('/sys.scripts.do');  
+  
+  //and then populate the script box a quarter second later  
+  setTimeout(function(){  
+  try{  
+  var textArea = win.document.getElementById("runscript");  
+  textArea.value = script;  
+  } catch(err){}  
+  }, 250);  
+})();  
