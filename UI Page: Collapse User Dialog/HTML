@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		textarea {
+			resize : none;
+		}
+		.control-label {
+			padding-top: 7px;
+		}
+	</style>
+	<g:ui_form>
+		<input type="hidden" id="table" name="table" value="${sysparm_table}"/>
+		<input type="hidden" id="list" name="list" value="${sysparm_sys_id_list}"/>
+		<input type="hidden" id="filter" name="filter" value="${sysparm_filter}"/>
+		<strong>$[gs.getMessage("Please select the User which all the selected user accounts will be replaced by.")]
+		<br />
+		<br />
+		$[gs.getMessage("WARNING: This will delete selected user accounts!!")]
+		</strong>
+		<div class="modal-body">
+			<div class="row form-section form-group">
+				<div class="col-sm-3 section-title-top is-required control-label">
+					<span class="required-marker"></span>$[gs.getMessage("User")]</div>
+				<div class="col-sm-9 section-title-top">
+					<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"><g:ui_reference name="user" id="user" table="sys_user" completer="AJAXTableCompleter" /></j:jelly>
+				</div>
+			</div>
+		</div>
+		<footer class="modal-footer">
+			<button class="btn-default btn" style="min-width: 5em" onclick="return onCancel();" name="cancel" id="cancel">${gs.getMessage('Cancel')}</button>
+			<button class="btn-primary btn" onclick="return onSubmit();" name="submit" id="submit" style="min-width: 5em">${gs.getMessage('Submit')}</button>
+		</footer>
+	</g:ui_form>
+</j:jelly>
