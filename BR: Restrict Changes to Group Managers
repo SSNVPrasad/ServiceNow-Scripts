@@ -1,0 +1,10 @@
+//table = sys_user_grmember
+
+(function executeRule(current, previous /*null when async*/) {
+    if(!gs.hasRole('user_admin') && current.group.manager != gs.getUserID()){
+        //Abort the insert or update
+        gs.addErrorMessage('You do not have permission to modify this group membership.');
+        current.setAbortAction(true);
+    }
+    
+})(current, previous);
