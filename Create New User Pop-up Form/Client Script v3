@@ -1,0 +1,103 @@
+function continueOK3(){
+	// set field names and labels
+	var allFields = {
+		'first_name':'First Name',
+		'middle_name':'Middle Name',
+		'last_name':'Last Name',
+		'email':'Email',
+		'company':'Company',
+		'title':'Title',
+		'mobile_phone':'Mobile Phone',
+		'phone':'Phone',
+		'work_phone':'Work Phone',
+		'person_type':'Person Type'
+	};
+	
+	// set mandatory fields
+	var manFields = ['first_name','last_name','email'];
+	// declare object to hold field values
+	var fields = {};
+	// declare array to hold empty fields that are mandatory
+	var emptyManFields = [];
+	// gather fields values and validate mandatory fields
+	
+	for(var key in allFields){
+		//alert(key);
+		//alert(gel(key).value);
+		fields[key] = gel(key).value;
+		if(manFields.indexOf(key) != -1 && fields[key] == '')
+		   emptyManFields.push(allFields[key]);
+	}
+	
+	// if mandatory fields are empty, alert user and abort submit
+	if(emptyManFields.length != 0){
+		// use split and join to perfomr replace all, adding spaces after commas
+		alert('The following mandatory fields are not filled in: ' + emptyManFields.toString().split(',').join(', '));
+		return false;
+	}
+	
+	// validate phone numbers
+	var validPhone = /^(?:[\(\. -])?(\d{3})(?:[\)\. -]|\) )?(\d{3})(?:[\. -])?(\d{4})$/;
+	var phoneFields = ['phone','work_phone','mobile_phone'];
+	var badPhone  = [];
+	for(var i = 0; i<phoneFields.length;i++) {
+		if(fields[phoneFields[i]] != '' && !validPhone.test(fields[phoneFields[i]]))
+			badPhone.push(allFields[phoneFields[i]]);
+	}
+	
+	// alert user ot invalid phone numbers
+	if(badPhone.length != 0) {
+		alert('The following Phone fields are not correctly formatted: '+badPhone.toString().split(',').join(', ')+
+			  '\n\n Please enter valid 10 digit phone numbers');
+		return false;
+	}
+
+	// call helper to add new user
+	// this will check to see if a matching user already exists, 
+	//    if an exact match is found it will be returned
+	//    if a partial mach is found user will be asked if they are sure they want to create a new user
+	//        if use existing user is selected then the existing user will be used
+	//        else a new user will be inserted and used
+	//    if no match is found a new user will be created and returned
+	var ga = new GlideAjax('HelperAJAX');
+	ga.addParam('sysparm_name','addNewExternalUser');
+	ga.addParam('sysparm_u_userfields', Object.toJSON(fields));
+	ga.getXMLAnswer(function(answer){
+		var newPerson = JSON.parse(answer);
+		
+		if(newPerson.code == '1'){
+			g_form.setValue('role3_signer_external',newPerson.value,newPerson.display);
+			g_form.addInfoMessage('User ' + newPerson.display + ' found.  Setting this user as the BI/SI Person.');
+			GlideDialogWindow.get().destroy();
+		} else if (newPerson.code == '2'){
+			if(confirm('User ' + newPerson.display + ' found on the Existing Users table.  Would you like to use this user?\n\nClick OK to use the user record found.  Click Cancel to create a new record using the information provided.')){
+				g_form.setValue('role3_signer_external',newPerson.value,newPerson.display);
+				GlideDialogWindow.get().destroy();
+			} else {
+				var ga = new GlideAjax('HelperAJAX');
+				ga.addParam('sysparm_name','addNewExternalUserNoConfirm');
+				ga.addParam('sysparm_u_userfields', Object.toJSON(fields));
+				ga.getXMLAnswer(function(answer){
+					//alert(answer);
+					var per = JSON.parse(answer);
+					if (per.code == '3'){
+						g_form.addInfoMessage('New External User record has been generated.');
+						g_form.setValue('role3_signer_external',per.value);
+						GlideDialogWindow.get().destroy();
+					}
+				});
+			}
+		} else if (newPerson.code == '3'){
+			g_form.addInfoMessage('No match for this user found in the External Users table. New record has been generated.');
+			g_form.setValue('role3_signer_external',newPerson.value);
+			GlideDialogWindow.get().destroy();
+		}
+		
+		return false;
+	});
+}
+
+function continueCancel3(){
+	GlideDialogWindow.get().destroy();
+	return false;
+}
