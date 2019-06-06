@@ -1,0 +1,101 @@
+var CatalogDataWorkflow = Class.create();
+CatalogDataWorkflow.prototype = {
+	initialize: function() {
+	},
+	checkStartDate : function (startDate){
+		var start = new GlideDateTime(startDate); // new hires start date
+		var today = new GlideDateTime();  // current date
+		return gs.dateDiff(today, start, true);  // returns positive if the start date is after today, negative if the start date is before today
+	},
+	
+	getCatalogDataItem : function (id){
+		var catalogItemDataGr = new GlideRecord('u_catalog_item_data');
+		if (catalogItemDataGr.get('sys_id', id))
+			return catalogItemDataGr;
+		
+		
+	},
+	
+	createTask : function (catalogDataId, ritm){
+		var catalogItemDataGr = this.getCatalogDataItem(catalogDataId);
+		
+		var taskGr = new GlideRecord('sc_task');
+		taskGr.initialize();
+		taskGr.request_item = ritm.sys_id.toString();
+		taskGr.parent = ritm.sys_id.toString();
+		taskGr.opened_by = ritm.opened_by;
+		taskGr.order = catalogItemDataGr.u_order.toString();
+		taskGr.assignment_group = this.setAssignmentGroup(catalogItemDataGr, ritm);
+		taskGr.assigned_to = this.setAssignee(catalogItemDataGr, ritm);
+		taskGr.short_description = catalogItemDataGr.u_short_description.toString();
+		taskGr.description = catalogItemDataGr.u_description.toString();
+		taskGr.u_data_record = catalogDataId;
+		
+		
+		// For each task on which this is dependent, verify the task exists AND that it is closed, if false set this task to pending.
+		if(!catalogItemDataGr.u_dependent_on.nil() && !this.areTasksComplete(catalogItemDataGr.u_dependent_on.toString().split(','), ritm)) {
+			taskGr.state = -5;
+			taskGr.work_notes = 'Dependent on the closure of task(s): ' + catalogItemDataGr.u_dependent_on.getDisplayValue();
+		}
+		else if (catalogItemDataGr.u_create_task_on.toString() == 'date' && this.checkStartDate(ritm.variables.start_date) > 0){
+			taskGr.state = -5;
+			taskGr.work_notes = 'Waiting for the Start Date';
+		}
+		else {
+			taskGr.state = 1;
+		}
+		
+		taskGr.insert();
+		return taskGr.sys_id.toString();
+		
+		
+	},
+	
+	setAssignmentGroup : function (catalogItemDataGr, ritm){
+		if (!catalogItemDataGr.u_assignment_group.nil()) {
+			//gs.log('task assignment group' +catalogItemDataGr.u_assignment_group.toString());
+			return catalogItemDataGr.u_assignment_group.toString();
+		}
+		else if (!catalogItemDataGr.u_conditional_assignment_group.nil()) {
+			
+			return ritm.getElement(catalogItemDataGr.u_conditional_assignment_group.toString());
+		}
+		
+	},
+	
+	setAssignee : function (catalogItemDataGr, ritm){
+		// check for hard coded vs. conditional assigned to
+		if (!catalogItemDataGr.u_assigned_to.nil()) {
+			return catalogItemDataGr.u_assigned_to.toSring();
+		}
+		else if (!catalogItemDataGr.u_conditional_assigned_user.nil()) {
+			if (ritm.variables.manager_delegate.toString() == "" || !catalogItemDataGr.getValue('u_allow_delegation') || catalogItemDataGr.u_type == 'docusign') {
+				//if the delegate is blank OR the task doesn't allow for delegation OR it is a docusign Task
+				return ritm.getElement(catalogItemDataGr.u_conditional_assigned_user.toString());
+				
+			}
+			else if (catalogItemDataGr.getValue('u_allow_delegation') && ritm.variables.manager_delegate.toString() != "") {
+				//if the delegate is not blank and the task does allow delegation
+				return ritm.variables.manager_delegate.toString();
+				
+			}
+		}
+		
+	},
+	
+	
+	areTasksComplete : function(taskIdArray, ritm) {
+		for(var t = 0; t < taskIdArray.length; t ++) {
+			var taskCheckGr = new GlideRecord("sc_task");
+			taskCheckGr.addQuery('request_item', ritm.sys_id.toString());
+			taskCheckGr.addQuery('u_data_record', taskIdArray[t]);
+			taskCheckGr.addQuery('state', 'IN', '3,4,7');
+			taskCheckGr.query();
+			if(!taskCheckGr.next()) {
+				return false;
+			}
+		}
+		return true;
+	},
+	type: 'CatalogDataWorkflow'
+};
