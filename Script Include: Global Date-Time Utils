@@ -1,0 +1,16 @@
+var GlobalDateTimeUtils = Class.create();
+GlobalDateTimeUtils.prototype = {
+    initialize: function() {
+    },
+
+	getDateTimeDiff : function(start, end, option){
+	//option is either true (returns seconds) or false (returns duration);
+		
+	return gs.dateDiff(start, end, option);
+			
+	},
+	
+	
+	
+    type: 'GlobalDateTimeUtils'
+};
