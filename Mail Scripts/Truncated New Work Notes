@@ -1,0 +1,9 @@
+var jString = current.comments.getJournalEntry(1);  
+var nString = setJournalString(jString);
+template.print(nString);  
+  
+function setJournalString(jString) { 
+    var regex = /\d+\W\d+\W\d+\s(.+)\n/;   
+    var result = jString.replace(regex, '');  
+    return result;  
+}  
