@@ -1,0 +1,86 @@
+var ReportHelper = Class.create();
+ReportHelper.prototype = {
+	initialize: function() {
+	},
+	
+	getExternalUsersWithNoData: function(limit) {
+		var extraUsers = [];
+		var userGr = new GlideRecord('u_external_user');
+		if(limit)
+			userGr.setLimit(limit);
+		userGr.query();
+		
+		while(userGr.next()) {
+			if(!hasRelatedRecords(userGr.sys_id.toString()))
+				extraUsers.push(userGr.sys_id.toString());
+		}
+		
+		gs.log('getExternalUsersWithNoData(): '+extraUsers.length,'ReportHelper');
+		
+		return extraUsers;
+		
+		function hasRelatedRecords(userId) {
+			var envelopeGr = new GlideRecord('x_waem2_docusign_envelope');
+			envelopeGr.addQuery('target_table','u_external_user');
+			envelopeGr.addQuery('target',userId);
+			envelopeGr.query();
+			
+			if(envelopeGr.next())
+				return true;
+			
+			var recipientGr = new GlideRecord('x_waem2_docusign_envelope_recipient');
+			recipientGr.addQuery('target_table','u_external_user');
+			recipientGr.addQuery('target',userId);
+			recipientGr.query();
+			
+			if(recipientGr.next())
+				return true;
+			
+			var visitGr = new GlideRecord('x_waem2_vms_m2m_external_users_visits');
+			visitGr.addQuery('external_user',userId);
+			visitGr.query();
+			
+			if(visitGr.next())
+				return true;
+			
+			var poiGr = new GlideRecord('x_waem2_vms_m2m_poi_external_user');
+			poiGr.addQuery('external_user',userId);
+			poiGr.query();
+			
+			if(poiGr.next())
+				return true;
+			
+			var bisiGr = new GlideRecord('x_waem2_bi_si_bi_si');
+			bisiGr.addQuery('person',userId);
+			bisiGr.query();
+			
+			if(bisiGr.next())
+				return true;
+			
+			
+			return false;
+		}
+	},
+	
+	getDuplicateRecords: function(tablename, val, exclude) {
+		var dupRecords = [];
+		
+		var gaDupCheck = new GlideAggregate(tablename);
+		gaDupCheck.addAggregate('COUNT', val);
+		gaDupCheck.addNotNullQuery(val);
+		
+		if (typeof exclude !== 'undefined')
+			gaDupCheck.addQuery(val, 'NOT IN', exclude);
+		
+		gaDupCheck.groupBy(val);
+		gaDupCheck.addHaving('COUNT', '>', 1);
+		gaDupCheck.query();
+		
+		while (gaDupCheck.next())
+			dupRecords.push(gaDupCheck[val].toString());
+		
+		return dupRecords;
+	},
+	
+	type: 'ReportHelper'
+};
