@@ -1,0 +1,205 @@
+function onSubmit() {
+	//Type appropriate comment here, and begin script below
+	
+	var matrixConditions = buildMatrixConditions(), fldKeys = [], loopNot = false,
+		loopOR = false, missingAttachments = [], strDisplay = 'You are missing the following attachments:\n', label = '';
+	if (isClosureStatus()) {
+		fldKeys = Object.keys(matrixConditions);
+		for (var x = 0; x < fldKeys.length; x++) {
+			// 			loopNot = executeFromArray(matrixConditions[fldKeys[x]].conditions, 'not');
+			// 			if (loopNot) {
+
+			// 			}
+			loopOR = executeFromArray(matrixConditions[fldKeys[x]].conditions, 'or');
+			if (loopOR && g_form.getValue(fldKeys[x]) == '') {
+				missingAttachments.push(fldKeys[x]);
+			}
+		}
+		
+		if (missingAttachments.length == 0)
+			return true;
+		
+		for (var y = 0; y < missingAttachments.length; y++) {
+			label = g_form.getLabelOf(missingAttachments[y]);
+			if (strDisplay)
+				strDisplay += '\n\t';
+
+			strDisplay += label;
+		}
+		
+		if (!confirm(strDisplay))
+			return false;
+	}
+}
+
+function executeFromArray(conds, type) {
+	var thisConds = [], looper;
+	if (type == 'not') {
+		thisConds = conds.not;
+		if (!conds.not)
+			return false;
+
+		for (looper = 0; looper < thisConds.length; looper++) {
+			if (thisConds[looper]())
+				return true;
+		}
+	}
+	else if (type == 'or') {
+		thisConds = conds.or;
+		if (!conds.or)
+			return false;
+
+		for (looper = 0; looper < thisConds.length; looper++) {
+			if (thisConds[looper]())
+				return true;
+		}
+
+		return false;
+	}
+}
+
+function isClosureStatus() {
+	return (g_form.getValue('overall_status') == 'Completed');
+}
+
+function buildMatrixConditions() {
+	var retOb = {};
+
+	retOb['certification_to_credit_reporting_agency'] = {};
+	retOb['certification_to_credit_reporting_agency'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE, isPeriodicReview]
+	};
+	
+	retOb['application_of_employment_attachment'] = {};
+	retOb['application_of_employment_attachment'].conditions = {
+		'or': [isLevel4FTE, isLevel4EPSFTE]
+	};
+	
+	retOb['veteran_separation_document'] = {};
+	retOb['veteran_separation_document'].conditions = {
+		'or': [isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE]
+	};
+	
+	retOb['applicant_disclosure'] = {};
+	retOb['applicant_disclosure'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE]
+	};
+	
+	retOb['personal_history_statement'] = {};
+	retOb['personal_history_statement'].conditions = {
+		'or': [isLevel3, isLevel4CR, isLevel4CREPS]
+	};
+	
+	retOb['personal_history_statement_limited'] = {};
+	retOb['personal_history_statement_limited'].conditions = {
+		'or': [isLevel1, isLevel2]
+	};
+	
+	retOb['cover_letter_from_risk_mgmt_director'] = {};
+	retOb['cover_letter_from_risk_mgmt_director'].conditions = {
+		'or': [isPeriodicReview]
+	};
+	
+	retOb['recurring_background_and_credit_check_authorization_release'] = {};
+	retOb['recurring_background_and_credit_check_authorization_release'].conditions = {
+		'or': [isPeriodicReview]
+	};
+	
+	retOb['credit_and_background_check_authorization_release'] = {};
+	retOb['credit_and_background_check_authorization_release'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE, isCreditOnly]
+	};
+	
+	retOb['notice_and_consent'] = {};
+	retOb['notice_and_consent'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE, isPeriodicReview, isCreditOnly]
+	};
+	
+	retOb['employee_disclosure'] = {};
+	retOb['employee_disclosure'].conditions = {
+		'or': [isPeriodicReview]
+	};
+	
+	retOb['consumer_report_authorization'] = {};
+	retOb['consumer_report_authorization'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE, isCreditOnly]
+	};
+	
+	retOb['summary_of_rights'] = {};
+	retOb['summary_of_rights'].conditions = {
+		'or': [isLevel1, isLevel2, isLevel3, isLevel4CR, isLevel4CREPS, isLevel4FTE, isLevel4EPSFTE, isPeriodicReview, isCreditOnly]
+	};
+	
+	retOb['consent_for_behavioral_assessment'] = {};
+	retOb['consent_for_behavioral_assessment'].conditions = {
+		'or': [isLevel4FTE, isLevel4CR, isSIOnly]
+	};
+	
+	retOb['consent_for_assessments_multiple'] = {};
+	retOb['consent_for_assessments_multiple'].conditions = {
+		'or': [isLevel4CREPS, isLevel4EPSFTE]
+	};
+	
+	return retOb;
+}
+
+function isContractor() {
+	return g_scratchpad.employee_type == 'Contractor';
+}
+
+function isStaff() {
+	return g_scratchpad.employee_type == 'Staff';
+}
+
+function isEPS() {
+	return (g_form.getValue('u_special_role') == 'eps');
+}
+
+function isLevel1() {
+	return (g_form.getValue('bi_si_type') == 'level_1_cv' || g_form.getValue('bi_si_type') == 'level_1_cr');
+}
+
+function isLevel2() {
+	return (g_form.getValue('bi_si_type') == 'level_2');
+}
+
+function isLevel3() {
+	return (g_form.getValue('bi_si_type') == 'level_3');
+}
+
+function isLevel4() {
+	return (g_form.getValue('bi_si_type') == 'level_4' || g_form.getValue('bi_si_type') == 'level_4_hr');
+}
+
+function isLevel4CR() {
+	return (isLevel4() && isContractor());
+}
+
+function isLevel4CREPS() {
+	return (isLevel4() && isContractor() && isEPS());
+}
+
+function isLevel4FTE() {
+	return (isLevel4() && isStaff());
+}
+
+function isLevel4EPSFTE() {
+	return (isLevel4() && isStaff() && isEPS());
+}
+
+function isPeriodicReview() {
+	return (g_form.getValue('bi_si_type') == 'Periodic Review');
+}
+
+function isSIOnly() {
+	return (g_form.getValue('bi_si_type') == 'SI Only');
+}
+
+function isWaived() {
+	return (g_form.getValue('bi_si_type') == 'waived');
+}
+
+function isCreditOnly() {
+	return (g_form.getValue('bi_si_type') == 'credit_report_only');
+}
+
