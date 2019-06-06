@@ -1,0 +1,31 @@
+var AttachmentHelper = Class.create();
+AttachmentHelper.prototype = {
+	initialize: function() {
+		this.sa = new GlideSysAttachment();   
+		this.StringUtil = new GlideStringUtil();
+	},
+	
+	getAttachment: function(attachment, inBase64) {
+		gs.log(attachment,'AttachmentHelper');
+		
+		var attachmentGr = attachment;
+		if(typeof attachmentGr === 'string'){
+			attachmentGr = new GlideRecord('sys_attachment');
+			if(!attachmentGr.get('sys_id',attachment))
+				throw new Error('Attachment ('+attachment+') not found.');
+		}
+		
+		var content = this.sa.getBytes(attachmentGr);
+		
+		return {
+			contentType: attachmentGr.content_type.toString(),
+			content: (inBase64) ? this.StringUtil.base64Encode(content) : content,
+			fileName: attachmentGr.file_name.toString(),
+			tableName: attachmentGr.table_name.toString(),
+			tableSysId: attachmentGr.table_sys_id.toString(),
+			id: attachmentGr.sys_id.toString()
+		};
+	},
+	
+	type: 'AttachmentHelper'
+};
