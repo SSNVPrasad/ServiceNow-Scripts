@@ -1,0 +1,37 @@
+var CatalogDataUtils = Class.create();
+CatalogDataUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+	
+	getVariableIDs : function(id) {
+		//Gets the value from the Mandatory Variables field on the Catalog Data Item table, which is the sys_ids of the variables.
+		var task_id = this.getParameter('sysparm_data_id');
+		
+		var variable_ids;
+		var lookUp = new GlideRecord('u_catalog_item_data');
+		lookUp.get(task_id);
+		variable_ids = lookUp.u_mandatory_variables;
+		if (variable_ids != ''){
+			return this.getVariableNames(variable_ids);
+		}
+		
+	},
+	
+	getVariableNames : function (var_id){
+		//Gets the name of the variables that are in the Mandatory Variable, sets them into a string field and returns them to the client script.
+		var vid = var_id.split(',');
+		var variable_names = '';
+		for (i=0; i< vid.length; i++){
+			var vname = new GlideRecord('item_option_new');
+			vname.get(vid[i]);
+			variable_names = variable_names + vname.name + ',';
+		}
+		
+		//gs.log('variable_names ' + variable_names, 'CatalogDataUtils');
+		
+		return variable_names;
+		
+		
+	},
+	
+	
+	type: 'CatalogDataUtils'
+});
