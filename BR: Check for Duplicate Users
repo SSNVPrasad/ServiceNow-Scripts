@@ -1,0 +1,20 @@
+// On Insert 
+
+(function executeRule(current, previous /*null when async*/) {
+	
+	var checkUser = new GlideRecord('x_waem2_bi_si_users');
+	checkUser.addQuery('first_name',current.first_name);
+	checkUser.addQuery('last_name',current.last_name);
+	checkUser.query();
+	
+	if(checkUser.next()){
+		if(current.phone_number == checkUser.phone_number || current.company == checkUser.company){
+			gs.addErrorMessage('Duplicate User Record Found: '+checkUser.number);
+			current.new_or_existing = 'New';
+			current.setAbortAction(true);
+		}
+			else{
+				return true;
+			}
+		}
+	})(current, previous);
