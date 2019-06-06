@@ -1,0 +1,17 @@
+function onSubmit() {
+	var ga = new GlideAjax('DataHelperAjax');
+	ga.addParam('sysparm_name','preventDuplicateUser');
+	ga.addParam('sysparm_fname', g_form.getValue('first_name'));
+	ga.addParam('sysparm_lname', g_form.getValue('last_name'));
+	ga.addParam('sysparm_company', g_form.getValue('company'));
+	ga.addParam('sysparm_phone_number', g_form.getValue('phone_number'));
+	ga.getXMLAnswer(function(answer) {
+		alert(answer);
+		if(answer)
+			g_form.submit();
+		else
+			alert("This is a duplicate user.");
+	});
+	
+	return false;
+}
