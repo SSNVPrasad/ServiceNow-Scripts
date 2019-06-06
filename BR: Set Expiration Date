@@ -1,0 +1,12 @@
+//Insert or Update
+
+(function executeRule(current, previous /*null when async*/) {
+
+	var gdt = new GlideDateTime(current.completed_date);
+    gdt.addYearsUTC(3);
+    
+    var gd = new GlideDate();
+    gd.setValue( gdt.getValue() );
+    current.expiration_date.setDisplayValue(gd.getDisplayValue());
+
+})(current, previous);
