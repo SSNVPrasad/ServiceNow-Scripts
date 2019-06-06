@@ -1,0 +1,10 @@
+//Onclick = printLabel()
+
+function printLabel(){
+
+     var url = g_navigation.getURL();
+     url = 'x_waem2_vms_label_printer.do?sysparm_users=' + g_form.getUniqueValue();
+  //url = 'x_waem2_bi_si_label_printer.do?sysparm_users=310ba3c14f8983005d839ffd0210c735';
+      //g_navigation.open(url);
+    g_navigation.openPopup(url);
+}
