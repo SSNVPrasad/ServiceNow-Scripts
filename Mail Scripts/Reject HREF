@@ -1,0 +1,10 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+          // Add your code here
+		var ThisServer = gs.getProperty('instance_name') + '@service-now.com?subject=RE: ';
+		var RefID = email.watermark;
+ 
+		template.print('mailto:' + ThisServer + current.sysapproval.getDisplayValue() + ' - reject&body=' + RefID);
+
+	
+})(current, template, email, email_action, event);
