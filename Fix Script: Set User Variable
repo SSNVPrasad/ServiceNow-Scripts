@@ -1,0 +1,7 @@
+var userGr = new GlideRecord('sys_user');
+userGr.query();
+
+while(userGr.next()) {
+	userGr.u_is_contractor = /^v-.*$/.test(userGr.user_name.toString());
+	userGr.update();
+}
