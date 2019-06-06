@@ -1,0 +1,10 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+var tbl = current.getTableName();
+var sysID = current.sys_id;
+var link = createLinkForObject(tbl,sysID);
+ template.print(link);
+function createLinkForObject(strTableName, strSysID){
+    return '<a href="${URI_REF}" class="sans" style="display:inline; height:90px; width:400px; font-size:25pt; color:#000000; text-decoration:none;"><img alt="View Request Details" src="https://INSTANCENAME.service-now.com/Watermark_BTN_Update_Ticket.png" height="81" width="329"/></a>';
+}
+})(current, template, email, email_action, event);
