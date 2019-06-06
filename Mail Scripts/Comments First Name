@@ -1,0 +1,9 @@
+var userid = current.sys_updated_by;    // Gets the User ID
+var gr = new GlideRecord('sys_user');  // Creates new GlideRecord Object
+    gr.addQuery('user_name', userid);   // Queries the table for the record of our user found in line 2
+    gr.query(); 
+    if (gr.next()) {                                    // If it finds one....
+      var userName = gr.first_name;              // set the variable "username" as the users name.
+     } 
+ 
+template.print(userName);  // Print the text "Updated By:" and then the username variable from line 7.
