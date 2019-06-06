@@ -1,0 +1,8 @@
+var touchUpdate = new GlideRecord('<table name>');
+touchUpdate.query();
+while (touchUpdate.next()) {
+	touchUpdate.autoSysFields(false);
+	touchUpdate.setForceUpdate(true);
+	touchUpdate.update();
+	gs.log(touchUpdate.u_name + ' Touched and Updated!');
+	}
