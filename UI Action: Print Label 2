@@ -1,0 +1,19 @@
+//Onclick printLabel()
+
+function printLabel(){
+
+    var selSysIds = g_list.getChecked();
+    var sysIdList = selSysIds.split(',');
+    var numSel = sysIdList.length;
+	
+    if(numSel > 0) {
+     
+      var url = g_navigation.getURL();
+      //alert("URL: " + url);
+      url = 'x_waem2_vms_label_printer.do?sysparm_users=' + sysIdList;
+      //g_navigation.open(url);
+		g_navigation.openPopup(url);
+
+
+     }
+}
