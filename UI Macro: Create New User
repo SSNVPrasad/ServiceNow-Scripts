@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<j:if test="${gs.hasRole('admin') || gs.hasRole('x_waem2_bi_si_bi_si_admin') || g_form.isNewRecord()}">
+		<span onclick="openDialog()" title="Add Person" alt="Add Person" tabindex="0" class="btn btn-default icon-user-add">
+			<script> 
+			  function openDialog(){  
+					var dialog = new GlideDialogWindow("x_waem2_bi_si_create_new_external_user_popup");   
+					dialog.setTitle("New Person");
+					dialog.setSize(750,1100);
+					dialog.render();   
+			  }  
+			</script> 
+		</span>
+	</j:if>
+</j:jelly>
