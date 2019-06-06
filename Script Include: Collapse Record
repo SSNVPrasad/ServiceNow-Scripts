@@ -1,0 +1,103 @@
+var CollapseRecord = Class.create();
+CollapseRecord.prototype = {
+	initialize: function() {
+	},
+
+	collapseTo: function (table, source, target) {
+		gs.log('Collapsing records on '+table+': '+source+ ' to: '+target);
+
+		var referenceGr = new GlideRecord('sys_dictionary');
+		referenceGr.addEncodedQuery('name!=NULL^name!=fx_currency_instance^internal_type=reference^reference=' + table +
+									'^NQname!=NULL^name!=fx_currency_instance^internal_type=document_id');
+		referenceGr.query();
+
+		gs.log('Collapsing '+referenceGr.getRowCount()+' records');
+
+		while(referenceGr.next()) {
+			var recordGr = new GlideRecord(referenceGr.name.toString());
+			recordGr.addQuery(referenceGr.element.toString(),'IN',source);
+			recordGr.addQuery(referenceGr.element.toString(),'!=',target);
+			recordGr.query();
+
+			while(recordGr.next()) {
+				gs.log('Updating Reference on: '+referenceGr.name.toString()+'('+recordGr.sys_id.toString()+ ')|'+referenceGr.element.toString()+'|'+recordGr[referenceGr.element.toString()].toString());
+				recordGr.setValue(referenceGr.getValue('element'),target);
+				recordGr.update();
+			}
+		}
+
+		// move extra attributes from old records
+
+		// get field list
+		var fieldList = this.getFieldsOnTable(table);
+
+		// loop through old records, copy fields as necessary then delete them
+		var targetGr = new GlideRecord(table);
+		targetGr.get('sys_id',target);
+
+		var sourceGr = new GlideRecord(table);
+		sourceGr.addQuery('sys_id','IN',source);
+		sourceGr.addQuery('sys_id','!=',target);
+		sourceGr.query();
+
+		while(sourceGr.next()) {
+			for(var i = 0; i< fieldList.length; i++) {
+				if(targetGr[fieldList[i]].nil() && !sourceGr[fieldList[i]].nil()) {
+					targetGr.setValue(fieldList[i], sourceGr.getValue(fieldList[i]));
+				}
+			}
+			targetGr.update();
+
+			sourceGr.deleteRecord();
+		}
+	},
+
+	getRecordCompleteness: function (table, recordId) {
+		var fieldList = this.getFieldsOnTable(table);
+
+		var recordGr = new GlideRecord(table);
+		recordGr.get('sys_id',recordId);
+
+		var score = 0;
+
+		for(var i = 0; i < fieldList.length; i ++) {
+			if(!recordGr[fieldList[i]].nil())
+				score ++;
+		}
+
+		return score;
+	},
+
+	getFieldsOnTable: function (table) {
+		var fieldList = [];
+
+		var dictionaryGr = new GlideRecord('sys_dictionary');
+		dictionaryGr.addEncodedQuery('name=' + table + '^internal_type!=collection^elementNOT LIKEsys_');
+		dictionaryGr.query();
+
+		while(dictionaryGr.next()) {
+			fieldList.push(dictionaryGr.element.toString());
+		}
+
+		return fieldList;
+	},
+
+	getPersonValues: function(personID) {
+		var personObj = {};
+		var guestVisitGR = new GlideRecord('x_waem2_vms_m2m_external_users_visits');
+		guestVisitGR.addQuery('external_user', personID);
+		guestVisitGR.orderByDesc('sys_updated_on');
+		guestVisitGR.query();
+		
+		if (guestVisitGR.next()) {
+			personObj.preferred_name = guestVisitGR.external_user.u_preferred_name.getValue();
+			personObj.email = guestVisitGR.external_user.u_email.getValue();
+			personObj.recent_visit = guestVisitGR.visit.getDisplayValue();
+			personObj.phone = guestVisitGR.external_user.u_phone.getValue();
+		}
+		
+		return personObj;
+	},
+
+	type: 'CollapseRecord'
+};
