@@ -1,0 +1,11 @@
+//Set's the user preferences for all users to tabbed.forms:true
+
+var userPrefGr = new GlideRecord('sys_user_preference');
+userPrefGr.addEncodedQuery('name=tabbed.forms^value!=true^ORvalue=NULL');
+userPrefGr.query();
+
+while(userPrefGr.next()) {
+	userPrefGr.setWorkflow(false);
+	userPrefGr.value=true;
+	userPrefGr.update();
+}
