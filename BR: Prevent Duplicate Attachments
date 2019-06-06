@@ -1,0 +1,38 @@
+//On Update
+
+(function executeRule(current, previous) {
+
+var gr = new GlideRecord('sys_attachment');
+	
+gr.addQuery('table_sys_id',current.getValue('table_sys_id'));
+gr.orderByDesc('table_sys_id');
+gr.query();
+while(gr.next()) {
+
+if(gr.getValue('content_type').toLowerCase() == current.content_type.toLowerCase()) {
+//cross verify the contents of this file with the existing file
+
+var gr1 = new GlideRecord('sys_attachment');
+gr1.get(gr.getValue('sys_id'));
+	
+var gsa = new GlideSysAttachment();
+var binData = gsa.getBytes(gr1);
+var strData = Packages.java.lang.String(binData);
+
+//now read the current file contents as well
+
+var gr2 = new GlideRecord('sys_attachment');
+gr2.get(current.getValue('sys_id'));
+	
+var gsa1 = new GlideSysAttachment();
+var binData1 = gsa1.getBytes(gr2);
+var strData1 = Packages.java.lang.String(binData1);
+
+//now compare the content of these 2 files. If equal, don't add again
+
+if(strData == strData1)
+{ current.setAbortAction(true); break; }
+}
+}
+}
+(current, previous));
