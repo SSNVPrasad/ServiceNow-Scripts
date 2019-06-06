@@ -1,0 +1,32 @@
+var AutomatedTickets = Class.create();
+var dayOfWeek = new GlideDateTime().getDayOfWeekLocalTime();
+var dayOfMonth = new GlideDateTime().getDayOfMonthLocalTime();
+var monthOfYear = new GlideDateTime().getMonthLocalTime();
+
+AutomatedTickets.prototype = {
+	initialize : function() {
+	},
+	
+	noWeekends : function(dayOfWeek) {
+		if(dayOfWeek == 6 || dayOfWeek == 7)
+			return false;
+		
+		return true;
+	},
+	
+	firstMonday : function(dayOfWeek, dayOfMonth){
+			if(dayOfMonth < 8 && dayOfWeek == 1)
+				return true;
+		
+		return false;
+	},
+	
+	firstMondayQuarterly : function(dayOfWeek, dayOfMonth, monthOfYear){
+			if((monthOfYear == 1 || monthOfYear == 4 || monthOfYear == 7 || monthOfYear == 10) && dayOfMonth > 8 && dayOfWeek == 1)
+				return true;
+		
+		return false;
+	},
+	
+	type : 'AutomatedTickets'
+};
