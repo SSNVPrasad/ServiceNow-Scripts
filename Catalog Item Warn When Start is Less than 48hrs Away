@@ -1,0 +1,36 @@
+function onChange(control, oldValue, newValue, isLoading) {
+	if (isLoading || newValue == '') {
+		return;
+	}
+	
+	g_form.clearMessages();
+	
+	var fdt = g_form.getValue('start_date_time'); //First Date/Time field
+	var dttype = 'hour'; //this can be day, hour, minute, second. By default it will return seconds.
+
+	var hoursFromNow = new GlideAjax('global.ClientDateTimeUtils');
+	hoursFromNow.addParam('sysparm_name','getNowDateTimeDiff');
+	hoursFromNow.addParam('sysparm_fdt', fdt);
+	hoursFromNow.addParam('sysparm_difftype', dttype);
+	hoursFromNow.getXMLAnswer(function(answer) {
+		var hours = Math.round(JSON.parse(answer));
+		if (hours < 48) {
+			// TODO: Message appears twice on first trigger. All subsequent triggers only show a single info message.
+			g_form.addInfoMessage("Your visit is less than 48 hours away! Please have your guests complete their NDAs right away by completing this form " + buildLink('com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=3a6abe464f1376008418b485f110c742&sysparm_link_parent=dea6a5d14ff0cb005d839ffd0210c770&sysparm_catalog=e0d08b13c3330100c8b837659bba8fb4&sysparm_catalog_view=catalog_default&sysparm_view=text_search', 'Send DocuSign NDA', false));
+			
+			// Scroll to the top to ensure they see the message
+			window.scroll(0,0);
+		}
+		
+	});
+	
+}
+
+function buildLink(url, text, mailTo) {
+	if (mailTo) {
+		return "<a href=mailto:" + url + ">" + text + "</a>";
+	} else {
+		var newWindow = "target='_blank'";
+		return "<a href='" + url + "'" + newWindow + ">" + text + "</a>";
+	}
+}
