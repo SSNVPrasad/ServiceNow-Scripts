@@ -1,0 +1,31 @@
+function onChange(control, oldValue, newValue, isLoading) {
+   if (isLoading || newValue == '') {
+      return;
+   }
+
+	var ga =  new GlideAjax('ClientDateTimeUtils');
+	ga.addParam('sysparm_name', 'getNowDateTimeDiff');
+	ga.addParam('sysparm_fdt', newValue);
+	ga.addParam('sysparm_difftype', 'second');
+	ga.getXMLWait();
+	var diff = ga.getAnswer();
+
+	if (diff < 0){
+		var dialog = new GlideDialogWindow('glide_ask_standard');
+		dialog.setTitle('Past Date');
+		dialog.setPreference('warning', true);
+		dialog.setPreference('title', 'The separation date is in the past.  Are you sure you want to continue?');
+	    dialog.setPreference('onPromptComplete',  confirm.bind(this));
+    dialog.setPreference('onPromptCancel', cancel.bind(this));
+    dialog.render(); 
+	}
+}
+function confirm() {
+	console.log("In the confirm function!");
+	//gFormAlreadySubmitted = true;
+   // gsftSubmit(gel(g_form.getActionName()));
+}
+
+function cancel() {
+	g_form.clearValue('separation_date');
+}
