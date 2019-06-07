@@ -1,0 +1,30 @@
+function onChange(control, oldValue, newValue, isLoading) {
+	if (isLoading || newValue == '') {
+		return;
+	}
+
+	var startField = 'start_date_time';
+	var endField = 'end_date_time';
+	var startDTLabel = g_form.getLabelOf(startField);
+	var endDTLabel = g_form.getLabelOf(endField);
+
+	g_form.hideFieldMsg(endField);
+
+	var startDT = g_form.getValue(startField); //First Date/Time field
+	var endDT = g_form.getValue(endField); //Second Date/Time field
+	var dttype = 'minute'; //this can be day, hour, minute, second. By default it will return seconds.
+
+	var ajax = new GlideAjax('global.ClientDateTimeUtils');
+	ajax.addParam('sysparm_name','getDateTimeDiff');
+	ajax.addParam('sysparm_fdt', endDT);
+	ajax.addParam('sysparm_sdt', startDT);
+	ajax.addParam('sysparm_difftype', dttype);
+	ajax.getXMLAnswer(function(answer) {
+		if(answer > 0 && startDT) {
+			// Using local storage from the Set End Date onChange script's response
+			g_form.setValue(endField, localStorage.getItem('ReminderEndDate'));
+			g_form.showFieldMsg(endField, endDTLabel + " must come after " + startDTLabel + ". Reset to 1 hour after " + startDTLabel + ".", 'error');
+		}
+	});
+
+}
