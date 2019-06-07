@@ -1,0 +1,14 @@
+(function runMailScript(current, template, email, email_action, event) {
+var msg = "";
+	
+msg+= '</h1>';
+msg+= '</td>';
+msg+= '</tr>';
+msg+= '<tr>';
+msg+= '<td>';
+msg+= '<div>';
+		
+	template.print(msg);
+          
+
+})(current, template, email, email_action, event);
