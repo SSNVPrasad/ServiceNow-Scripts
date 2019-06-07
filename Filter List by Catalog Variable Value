@@ -1,0 +1,3 @@
+javascript: 'u_cost_center_type=location^u_company='+current.variables.u_company_name.toString();
+javascript: 'u_cost_center_type=department^u_company='+current.variables.u_company_name.toString();
+javascript: 'u_company='+current.variables.u_company_name.toString();
