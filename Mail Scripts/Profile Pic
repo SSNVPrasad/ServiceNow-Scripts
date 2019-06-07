@@ -1,0 +1,14 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+          // Add your code here
+	
+var userid = current.sys_updated_by;    // Gets the User ID
+var gr = new GlideRecord('sys_user');  // Creates new GlideRecord Object
+    gr.addQuery('user_name', userid);   // Queries the table for the record of our user found in line 2
+    gr.query(); 
+    if (gr.next()) {                                    // If it finds one....
+      var photo = gr.photo;  
+	
+template.print(photo);
+	}
+})(current, template, email, email_action, event);
