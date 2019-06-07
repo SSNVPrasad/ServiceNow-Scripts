@@ -1,0 +1,9 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+var dateOnly = current.due_date.split(' ');
+
+	
+	template.print(dateOnly[0]);
+	
+
+})(current, template, email, email_action, event);
