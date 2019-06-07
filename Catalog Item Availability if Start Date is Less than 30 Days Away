@@ -1,0 +1,20 @@
+function onChange(control, oldValue, newValue, isLoading) {
+   if (isLoading || newValue == '') {
+      return;
+   }
+	
+	var startDate = g_form.getValue('start_date');
+	var standingDesk = g_form.getValue('standing_desk');
+
+	var date = new GlideAjax('ClientDateTimeUtils');
+	date.addParam('sysparm_name', 'getNowDateTimeDiff');
+	date.addParam('sysparm_fdt', startDate);
+	date.addParam('sysparm_difftype', 'day');
+	date.getXMLAnswer(function(response) {
+
+		if (Math.round(response) < 30 && standingDesk == 'Yes') {
+			g_form.showFieldMsg('standing_desk', "Standing desk may not be available on Day 1", 'info');
+		}
+	});
+   
+}
