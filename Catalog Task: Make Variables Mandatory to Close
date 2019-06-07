@@ -1,0 +1,25 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	if (isLoading || newValue === '') {
+		return;
+	}
+	
+	// If the state is Closed Complete
+	if (newValue == 3 && g_form.getValue('u_data_record') != null) {
+		var ga = new GlideAjax ('CatalogDataUtils');
+		ga.addParam('sysparm_name', 'getVariableIDs');
+		ga.addParam('sysparm_data_id', g_form.getValue('u_data_record'));
+		ga.getXMLWait();
+		var vn = ga.getAnswer();
+		
+			if (vn != null) {
+				var vnArray = vn.split(',');
+				
+				for (i=0; i< vnArray.length; i++) {
+					var field_name = 'variables.'+ vnArray[i];
+				
+					g_form.setMandatory(field_name, true);
+				}
+			}
+		}
+	
+}
