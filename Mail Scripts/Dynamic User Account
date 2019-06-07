@@ -1,0 +1,9 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+          if (current.variables.user_name.user_name) {
+			template.print('<p>User Account: ${variables.user_name.user_name}</p>');  
+		  } else {
+			 template.print('<p>User Account: Pending</p>');  
+		  }
+
+})(current, template, email, email_action, event);
