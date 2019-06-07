@@ -1,0 +1,32 @@
+function onSubmit() {
+   //looks for value in manager_delegate variable, then checks delegate table and creates record if one does not yet exist
+	
+	var del = g_form.getValue('manager_delegate');
+	var mgr = g_form.getValue('hiring_manager');
+	var now = new GlideDateTime();
+	var gdt = new GlideDateTime().addYears(20);
+	//var gdt = new GlideDateTime("2020-01-01 00:00:01");
+	if (del){
+		var gr = new GlideRecord("sys_user_delegate");
+gr.addQuery("user", mgr);
+		gr.addQuery("delegate", del);		
+gr.query();
+if (gr.getRowCount==0) {
+	var dl = new GlideRecord("sys_user_delegate");
+	dl.initialize();
+	dl.user = mgr;
+	dl.delegate = del;
+	dl.starts = now;
+	dl.ends = gdt;
+	dl.approvals = true;
+	dl.assignments = true;
+	dl.notifications = true;
+	dl.invitations = true;
+	dl.insert();   
+}else{
+	return;
+}
+
+	}
+   
+}
