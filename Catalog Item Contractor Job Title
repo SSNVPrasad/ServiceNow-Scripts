@@ -1,0 +1,9 @@
+function onSubmit() {
+	var staffType = g_form.getValue('staff_type');
+	var title = g_form.getValue('job_title');
+	
+	if (staffType === 'contractor') {
+		g_form.setValue('job_title', title + ', Contractor');
+	}
+	
+}
