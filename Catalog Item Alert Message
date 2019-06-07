@@ -1,0 +1,4 @@
+function onLoad() {
+   //Display an alert to the user instructing them not to enter sensitive data
+   g_form.addErrorMessage('ATTENTION: Do not enter sensitive personal or compensation information in the form below. If this type of information is needed to fulfill your request, please send your question to: <a href="mailto:payroll@watermark-llc.com">Payroll@watermark-llc.com</a>');
+}
