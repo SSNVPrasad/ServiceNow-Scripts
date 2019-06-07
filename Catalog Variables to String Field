@@ -1,0 +1,19 @@
+toAccountString();
+ function toAccountString() {
+	var classCode = producer.u_class_code;
+
+/* Only include non-empty variables, and exclude Label and Container variables */
+ 
+	if (classCode == "") {
+		current.u_account_code_string = producer.u_entity_code.u_entity_code + "-" + producer.u_location_code.code + "-" + producer.u_department_code.code + "-" + producer.u_account_code.account_number;
+
+	}
+	 
+	 else if (classCode != ""){
+		current.u_account_code_string = producer.u_entity_code.u_entity_code + "-" + producer.u_location_code.code + "-" + producer.u_department_code.code + "-" + producer.u_account_code.account_number + "-" + producer.u_class_code.u_class_code;
+
+		}
+ }
+
+current.company = producer.u_requested_for.company;
+current.u_entity_location_combined = producer.u_entity_code.u_entity_code + "-" + producer.u_location_code.code;
