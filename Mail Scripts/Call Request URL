@@ -1,0 +1,10 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+          // Add your code here
+	var baseURL = 'watermarkdev.service-now.com';
+	var tableName = current.get(table);
+	var fieldValue = 'field=value';
+template.print('https://' + baseURL + '/nav_to.do?uri=' + tableName + '.do?sys_id=' +current.sys_id+ '%26sysparm_query=' +fieldValue);
+	
+	
+})(current, template, email, email_action, event);
