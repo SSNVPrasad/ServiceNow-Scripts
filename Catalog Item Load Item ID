@@ -1,0 +1,7 @@
+function onLoad() {
+	var guid = gel('sysparm_item_guid');
+	if (guid) guid = guid.value;
+	else guid = '';
+	
+	g_form.setValue('item_id', guid);
+}
