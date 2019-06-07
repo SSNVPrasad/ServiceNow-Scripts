@@ -1,0 +1,9 @@
+function onChange(control, oldValue, newValue, isLoading) {
+	if (newValue == '') {
+		return;
+	}
+	
+	if (newValue === 'null')
+		g_form.clearValue('alt_email');
+	
+}
