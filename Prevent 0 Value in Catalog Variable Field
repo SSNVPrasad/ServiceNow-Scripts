@@ -1,0 +1,8 @@
+function onSubmit() {
+   //Prevent a variance amount of $0
+  var va = g_form.getValue('u_variance_amount');	
+if (va == 0 || va == 0.00 || va == "$0" || va == "$0.00" || va == "$-0" || va == "$-0.00" || va == "-$0" || va == "-$0.00") {
+   alert('Variance amount cannot be 0');
+   return false;
+} 
+}
