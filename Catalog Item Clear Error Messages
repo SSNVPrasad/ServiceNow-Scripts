@@ -1,0 +1,14 @@
+function onLoad() {
+   //Type appropriate comment here, and begin script below
+	
+	function clearMessages() {
+		g_form.clearMessages();
+		saveProducer('');
+	}
+	
+	var btnSubmit = gel('submit_button'), clickFunction;
+	if (btnSubmit) {
+		btnSubmit.onclick = clearMessages;
+	}
+	
+}
