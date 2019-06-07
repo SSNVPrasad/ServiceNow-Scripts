@@ -1,0 +1,5 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+	template.print('/nav_to.do?uri=' +current.getTableName()+ '.do?sys_id=' +current.sys_id);
+
+})(current, template, email, email_action, event);
