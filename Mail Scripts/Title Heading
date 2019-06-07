@@ -1,0 +1,71 @@
+(function runMailScript(current, template, email, email_action, event) {
+var msg = "";
+	
+msg+= '<style><!--';
+msg+= '�<span id="__caret">_</span><!--';
+msg+= 'Entity: ${u_entity}<br /><span id="__caret">_</span><!--';
+msg+= 'Entity: ${u_entity}<br /><span id="__caret">_</span><!--';
+msg+= '�<span id="__caret">_</span><!--';
+msg+= '<span id="__caret">_</span>�<span id="__caret">_</span>�<span id="__caret">_</span><!--';
+msg+= '�<span id="__caret">_</span>�<span id="__caret">_</span><!--';
+msg+= 'body{ 	';
+msg+= 'font-family: Helvetica Neue, Helvetica, Arial," sans-serif";';
+msg+= 'font-weight: 300;';
+msg+= 'color:#0b3a5c;';
+msg+= '	}';
+msg+= 'h1 {';
+msg+= '	color: #646464;';
+	msg+= 'font-size:27pt;';
+	msg+= 'font-family: Gill Sans, Helvetica Neue, Helvetica, Arial," sans-serif";';
+	msg+= 'font-weight:300;';
+	msg+= 'text-transform: uppercase;';
+	msg+= 'text-align: center;';
+msg+= '	}';
+msg+= 'h2 {';
+msg+= '	font-family: Gill Sans, Helvetica Neue, Helvetica, Arial," sans-serif";';
+	msg+= 'font-size: 16pt; ';
+	msg+= 'line-height: 115%; ';
+	msg+= 'color: #646464;';
+msg+= '	font-weight:600;';
+msg+= '	}';
+msg+= 'h3 {';
+msg+= '	font-size: 16pt; ';
+	msg+= 'line-height: 80%; ';
+msg+= '	font-weight:600;';
+msg+= '	}';
+msg+= 'p, li, div, .sans {';
+msg+= '	color:#646464;';
+msg+= '	font-size: 13pt;';
+msg+= '	font-weight: 400;';
+msg+= '	margin-top:0in; ';
+msg+= '	margin-right:0in; ';
+	msg+= 'margin-bottom:10.0pt; ';
+msg+= '	margin-left:0in; ';
+msg+= '	line-height:130%; ';
+msg+= '	}';
+msg+= 'a {';
+	msg+= 'color:#0564A9;';
+	msg+= 'text-decoration:none;';
+	msg+= 'font-weight:bold;';
+msg+= '}';
+msg+= '.border {border-top-width:1pt; border-color: #201c50; border-top-style:solid; padding-top:10pt; padding-bottom:10pt;}';
+msg+= '--></style>';
+
+msg+= '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
+msg+= '<tbody>';
+msg+= '<tr>';
+msg+= '<td>&nbsp;</td>';
+msg+= '<td align="center" width="800">';
+msg+= '<table style="margin-left: auto; margin-right: auto;" border="0" width="800">';
+msg+= '<tbody style="marin-left: auto; margin-right: auto;">';
+msg+= '<tr>';
+msg+= '<td>';
+msg+= '<p>&nbsp;</p>';
+msg+= '<h1 style="text-align: center;">';
+	
+
+
+	template.print(msg);
+          
+
+})(current, template, email, email_action, event);
