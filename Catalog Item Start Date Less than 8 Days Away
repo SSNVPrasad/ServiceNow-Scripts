@@ -1,0 +1,29 @@
+function onChange(control, oldValue, newValue, isLoading) {
+	if (isLoading || newValue == '') {
+		return;
+	}
+	
+	var field = 'start_date';
+	
+	// Calculates the duration (in hours) inside the 8-5 excluding holidays shedule
+	var date = new GlideAjax('CatalogUtilsAJAX');
+	date.addParam('sysparm_name', 'getScheduledDurationFromNow');
+	date.addParam('sysparm_start_date', newValue);
+	date.getXMLAnswer(function(response) {
+		// console.log(response)
+		g_form.clearMessages();
+		
+		if (response == 0) {
+			g_form.showFieldMsg(field, "Please note: Start date is before today's date.", 'info');
+			//g_form.clearValue(field);
+			return;
+		}
+		
+		var hoursDiff = response / 60 / 60;
+		
+		if (hoursDiff < 64) {
+			g_form.showFieldMsg(field, "All access may not be available on Day 1 due to insufficient lead time", 'info');
+		}
+	});
+	
+}
