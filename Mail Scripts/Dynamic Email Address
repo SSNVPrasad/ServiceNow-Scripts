@@ -1,0 +1,11 @@
+(function runMailScript(current, template, email, email_action, event) {
+
+          if (current.variables.user_name.email) {
+			template.print('<p>Work Email Address: ${variables.user_name.email}</p>');  
+		  } else if (current.variables.alt_email) {
+			 template.print('<p>Personal Email Address: ${variables.alt_email}</p>');  
+		  } else {
+			  
+		  }
+
+})(current, template, email, email_action, event);
