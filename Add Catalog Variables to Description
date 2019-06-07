@@ -1,0 +1,45 @@
+toDescription();
+ function toDescription() {
+	var due_date = producer.due_date;
+	var access_expiration = producer.access_expiration;
+	 
+
+/* Only include non-empty variables, and exclude Label and Container variables */
+ 
+		 if (due_date != "" && access_expiration == "") {
+		current.description = producer.access_reason + "\n" + "\n"
+			+"Access Request Information:" + "\n"
+			+ producer.persons_name.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_name + "\n" 
+			+ producer.persons_email_address.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_email_address + "\n" 
+			+ producer.persons_phone_number.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_phone_number + "\n" 
+			+ producer.due_date.getGlideObject().getQuestion().getLabel() + ": " + producer.due_date + "\n";
+	}
+	 
+	 else if (due_date == "" && access_expiration != ""){
+		current.description = producer.access_reason + "\n" + "\n" 
+			+"Access Request Information:" + "\n"
+			+ producer.persons_name.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_name + "\n" 
+			+ producer.persons_email_address.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_email_address + "\n" 
+			+ producer.persons_phone_number.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_phone_number + "\n" 
+			+ producer.access_expiration.getGlideObject().getQuestion().getLabel() + ": " + producer.access_expiration + "\n";
+		}
+	 
+	 	 else if (due_date == "" && access_expiration == ""){
+		current.description = producer.access_reason + "\n" + "\n" 
+			+"Access Request Information:" + "\n"
+			+ producer.persons_name.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_name + "\n" 
+			+ producer.persons_email_address.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_email_address + "\n" 
+			+ producer.persons_phone_number.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_phone_number + "\n";
+		}
+	 	
+		 else {
+		current.description = producer.access_reason + "\n" + "\n" 
+			+"Access Request Information:" + "\n"
+			+ producer.persons_name.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_name + "\n" 
+			+ producer.persons_email_address.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_email_address + "\n" 
+			+ producer.persons_phone_number.getGlideObject().getQuestion().getLabel() + ": " + producer.persons_phone_number + "\n"
+			+ producer.due_date.getGlideObject().getQuestion().getLabel() + ": " + producer.due_date + "\n"
+			+ producer.access_expiration.getGlideObject().getQuestion().getLabel() + ": " + producer.access_expiration + "\n";
+			
+		}
+ }
