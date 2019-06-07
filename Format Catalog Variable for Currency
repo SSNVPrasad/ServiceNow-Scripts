@@ -1,0 +1,28 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {  
+  
+  if (isLoading || newValue === '') {  
+  return;  
+  }  
+
+//Format entered data
+  var result = formatNumber(newValue);  
+	if(result.search("$")){
+		//alert("The value for Contract Amount must be in the format of xxxx.xx");
+	result = result.replace("$","");
+  }  
+   
+// To avoid recusrion 
+   if (result != newValue) {
+	   g_form.setValue('u_variance_amount', result);
+      }	
+}  
+
+ function formatNumber(x) {  
+// Regular expression allowing only numeric values  
+  var reg = /^[\d,$.-]+$/;  
+  if(!x.match(reg))  
+    return false;  
+  else  
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");  // Insert commas at correct position  
+	 
+ }
