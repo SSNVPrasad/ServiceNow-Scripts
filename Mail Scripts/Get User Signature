@@ -1,0 +1,10 @@
+(function runMailScript(current) {
+
+var user = new GlideRecord('sys_user');
+user.get(gs.getUserID());
+
+template.print(user.getValue('name')+'\n');
+template.print(user.getValue('title')+'\n');
+template.print(user.getValue('email')+'\n');	
+
+})(current);
