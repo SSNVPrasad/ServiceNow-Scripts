@@ -1,0 +1,26 @@
+(function runMailScript(current, template, email, email_action, event) {
+var msg = "";
+var link = '/nav_to.do?uri=' +current.getTableName()+ '.do?sys_id=' +current.sys_id;
+	
+msg+= '<tr>';
+msg+= '<td class="border" style="height: 200pt; background-color: #f4f4f4;">';
+msg+= '<table style="margin-left: auto; margin-right: auto;" border="0" width="60%" align="center">';
+msg+= '<tbody>';
+msg+= '<tr>';
+msg+= '<td style="background-color: #f4f4f4;">&nbsp;</td>';
+msg+= '<td style="text-align: center;"><a class="sans" style="display: inline; height: 90px; width: 400px; font-size: 25pt; color: #000000; text-decoration: none;" href="';
+msg+= link;
+msg+='"><img src="https://<INSTANCE>.service-now.com/Watermark_BTN_Update_Ticket.png" alt="View Request Details" width="329" height="81" /></a></td>';
+msg+= '<td style="background-color: #f4f4f4;">&nbsp;</td>';
+msg+= '</tr>';
+msg+= '</tbody>';
+msg+= '</table>';
+msg+= '</td>';
+msg+= '</tr>';
+msg+= '</tbody>';
+msg+= '</table>';
+		
+	template.print(msg);
+          
+
+})(current, template, email, email_action, event);
