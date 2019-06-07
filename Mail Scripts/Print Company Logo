@@ -1,0 +1,5 @@
+(function runMailScript(current, template, email, email_action, event) {
+	
+	template.print("<img src='http://" + gs.getProperty('instance_name')+ ".service-now.com\\/" + current.visit.vms_company.company.banner_image.getDisplayValue() + "'></img>");
+	
+})(current, template, email, email_action, event);
