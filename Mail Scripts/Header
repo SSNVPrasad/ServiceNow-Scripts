@@ -1,0 +1,10 @@
+(function runMailScript(current, template, email, email_action, event) {
+var msg = "";
+	msg+= '<div style="background-color: #0b3a5c; margin: 0;">';
+msg+= '<p style="background-color: #0b3a5c; text-align: center; margin: 0;"><a href="https://<INSTANCE>.service-now.com/"><img src="https://<INSTANCE>.service-now.com/watermark-logo-vertical.png" alt="" height="150" /></a></p>';
+msg+= '<p style="height: 10px; display: block; background-color: #0b3a5c; center; margin: 0;">&nbsp;</p>';
+msg+= '</div>';
+	template.print(msg);
+          
+
+})(current, template, email, email_action, event);
