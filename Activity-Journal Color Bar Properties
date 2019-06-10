@@ -1,0 +1,9 @@
+There are System Properties for that.   They are named "glide.ui.activity_stream.style.field_name", where field_name is the name of the field you want to have a highlight.
+
+
+
+The default value for comments is "transparent".   For the example below, the System Properties are set to the following:
+
+
+
+
