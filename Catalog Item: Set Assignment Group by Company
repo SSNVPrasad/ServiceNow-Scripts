@@ -1,0 +1,28 @@
+current.u_assignment_group = getGroup(producer.u_company.name);
+
+function getGroup(company){
+	var group = 'Facilities';
+	
+	if (company == '<COMPANY NAME>')
+		group = '<GROUP NAME>';
+	
+	//if (company == '<COMPANY NAME>')
+		//group = '<GROUP NAME>';
+	
+	//if (company == '<COMPANY NAME>')
+		//group = '<GROUP NAME>';
+	
+	//if (company == '<COMPANY NAME>')
+		//group = '<GROUP NAME>';
+	
+	if (company == '<COMPANY NAME>')
+		group = '<GROUP NAME>';
+	
+	var groupID = new GlideRecord('sys_user_group');
+	groupID.addQuery('name',group);
+	groupID.query();
+	if(groupID.next()){
+		return groupID.sys_id;
+	}
+	return;
+}
