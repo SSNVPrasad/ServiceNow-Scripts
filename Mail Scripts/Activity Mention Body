@@ -1,0 +1,21 @@
+var recordGR = new GlideRecord(current.table);
+
+if(recordGR.get(current.document)) {
+
+         email.setSubject("You have been mentioned in " + recordGR.number +" | " + recordGR.getDisplayValue());
+
+       template.print("<p style='color: #424E5B;margin: 0 0 12px;line-height: 26px;margin-bottom: 12px'>You have been mentioned by " + current.user_from.name + " in <a href='/" + recordGR.getRecordClassName() + ".do?sys_id=" + recordGR.getUniqueValue() + "'>" + recordGR.getDisplayValue() + "</a></p>");
+
+       if (current.field_name == "comments") {
+
+               template.print(recordGR.comments.getJournalEntry(1) +   "<br />");
+
+       }
+
+       else if (current.field_name == "work_notes") {
+
+               template.print(recordGR.work_notes.getJournalEntry(1) +   "<br />");
+
+       }
+
+}
