@@ -1,0 +1,17 @@
+function onLoad() {
+	var group = g_form.getReference('assignment_group');//get the value of group	   
+    
+	if (group.name == "Application Development")/*if group is Application Development, then:*/ {
+		    g_form.removeOption('state', '-5');
+		    g_form.removeOption('state', '-6'); 
+		    g_form.removeOption('state', '-4'); 
+		    g_form.removeOption('state', '3');
+		   	g_form.removeOption('state', '4');         
+  }
+
+   else {
+	        g_form.removeOption('state', '9');
+		    g_form.removeOption('state', '10'); 
+		    g_form.removeOption('state', '11'); 
+   }
+}
