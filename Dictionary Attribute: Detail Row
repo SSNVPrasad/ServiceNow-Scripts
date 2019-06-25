@@ -1,0 +1,3 @@
+//example of using short description as the detail row that will appear below the number
+
+all_tables.detail_row=short_description
