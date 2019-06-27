@@ -1,0 +1,39 @@
+//Place in script section of record producer "What it will contain"
+
+var sourceGR = new GlideRecord(producer.originating_record.sys_class_name);
+if(sourceGR.get(producer.originating_record.sys_id + '')) {
+
+	var newGR = new GlideRecord(producer.record_type + '');
+	newGR.initialize();
+	
+	switch(producer.record_type + '') {
+		case 'incident':
+		newGR.caller_id = sourceGR.caller_id;
+		newGR.short_description = sourceGR.short_description;
+		newGR.description = sourceGR.description;
+		newGR.parent = sourceGR.sys_id + '';
+		break;
+		
+		case 'problem':
+		newGR.short_description = sourceGR.short_description;
+		newGR.description = sourceGR.description;
+		newGR.parent = sourceGR.sys_id + '';
+		break;
+		
+		case 'change_request':
+		newGR.short_description = sourceGR.short_description;
+		newGR.description = sourceGR.description;
+		newGR.parent = sourceGR.sys_id + '';
+		break;
+	}
+	
+	var newSysID = newGR.insert();
+	
+	var url = 'nav_to.do?uri=' + producer.record_type + '.do?sys_id=' + newSysID;
+	
+	gs.addInfoMessage(newGR.number + ' created from ' + sourceGR.number);
+	producer.redirect = url;
+		
+}
+
+current.setAbortAction(true);
