@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		.iotd .btn-success {
+			padding:5px !important; 
+			width:140px !important;
+			background-color:#278efc !important; 
+			border-color:#0e81FC !important; 
+			margin-bottom:10px;
+		}
+	</style>
+	
+	<g2:evaluate var="jvar_new_record_link" jelly="true">
+		/* This section no longer required
+		// set button specific values
+		var newRecordTableName = "problem";
+		var fieldValueMap = {
+			parent: current.sys_id.toString(),
+			short_description: current.short_description.toString(),
+			comments: "Created from "+current.number.toString()+" using the New Example Record button",
+			location: "1d7449cadb61d3408726f1561d9619cb"
+		};
+		
+		// assemble key value pairs into array that will be joined to form the query that sets field values
+		var valueArray = [];
+		for(var key in fieldValueMap) {
+			valueArray.push(key+"="+fieldValueMap[key]);
+		}
+		
+		// Build the URL
+		//var recordLink = gs.getProperty('glide.servlet.uri') + "nav_to.do?uri="+newRecordTableName+".do?sys_id=-1%26sysparm_query="+valueArray.join('^');
+		*/
+		
+		
+		// Build the URL to take to the new record producer; pass table name and sys id in the url
+		var recordLink = 'com.glideapp.servicecatalog_cat_item_view.do?sysparm_id=925a4f971bc67300331e7510cd4bcb40&amp;sysparm_original_class=' + current.sys_class_name + '&amp;sysparm_original_number=' + current.sys_id.toString();
+		
+		recordLink;
+	</g2:evaluate>
+	
+	<a href="$[jvar_new_record_link]" class="btn btn-success" target="_blank">New Example Record</a>
+</j:jelly>
