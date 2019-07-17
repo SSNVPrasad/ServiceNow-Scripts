@@ -1,0 +1,12 @@
+function onChange(control, oldValue, newValue, isLoading) {
+   if (isLoading || newValue == '') {
+      return;
+   }
+	if(newValue == '0dba23600f46e100a32446ace1050e29') //If Company is X
+		g_form.setValue('variables.u_location', 'f2337937dbc093009653f1041d9619f7'); //Set Location to X
+	
+	else if(newValue != '0dba23600f46e100a32446ace1050e29') //If Company is NOT X
+		g_form.clearValue('variables.u_location'); //Clear Location value
+	
+   
+}
