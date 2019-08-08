@@ -1,0 +1,3 @@
+//Create New Ticket with Assignment Group and Short Description already filled in, force specific form view and then redirect to ticket list with fixed query to display only Active and tickets assigned to the specified group.
+
+TABLE_NAME.do?sys_id=-1&sysparm_query=assignment_group=1b9b982437896e00f703c7d1b3990efe^short_description=Access Request/Accession:&sysparm_view=VIEW_NAME&sysparm_view_forced=true&sysparm_stack=TABLE_NAME_list.do?sysparm_fixed_query=active=true^assignment_group=1b9b982437896e00f703c7d1b3990efe
