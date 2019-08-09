@@ -1,0 +1,2 @@
+//Get Current Logged in User, Get their Company record, Get specific field on Company record
+javascript:gs.getUser().getCompanyRecord().u_entity_code.toString();
