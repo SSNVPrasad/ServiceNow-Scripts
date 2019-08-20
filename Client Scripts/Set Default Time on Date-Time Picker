@@ -1,0 +1,24 @@
+function onLoad() { 
+//Type appropriate comment here, and begin script below 
+setDatePickerTime('due_date'); 
+} 
+
+function setDatePickerTime(field) 
+{ 
+Event.observe($(g_form.getControl(field).id).next().down(),'click', function() { setTimeout(setDefaultTime,0); }); 
+} 
+
+function setDefaultTime() 
+{ 
+if (!$('GwtDateTimePicker_hh')) 
+{ 
+setTimeout(setDefaultTime,0); 
+} 
+else 
+{ 
+$('GwtDateTimePicker_hh').value = '04'; 
+$('GwtDateTimePicker_mm').value = '30'; 
+$('GwtDateTimePicker_ss').value = '00';
+$('GwtDateTimePicker_ampm').value = 'pm';
+} 
+}
