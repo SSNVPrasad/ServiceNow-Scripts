@@ -1,0 +1,14 @@
+var apprRec = new GlideRecord('sysapproval_approver');
+
+apprRec.addQuery('sysapproval', current.sys_id);
+
+apprRec.query();
+
+
+while (apprRec.next()) {
+
+   apprRec.wf_activity = '';
+
+   apprRec.update();
+
+}
