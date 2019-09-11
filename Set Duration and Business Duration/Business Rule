@@ -1,0 +1,21 @@
+// Business Rule
+// Table: Task [task]
+// Active: true
+// Advanced: true
+// When: Before
+// Order 100000000
+// Insert: true
+// Upauthor: 'jace'
+date:true
+// Condition:
+// calendar_durationISEMPTY^
+// opened_atISNOTEMPTY^
+// closed_atISNOTEMPTY^
+// sys_class_name!=incident^
+// sys_class_name!=problem
+//
+// Script
+var opened = current.opened_at.getDisplayValue();
+var closed = current.closed_at.getDisplayValue();
+current.calendar_duration = gs.dateDiff(opened, closed, false);
+current.business_duration = gs.calDateDiff(opened, closed, false);
