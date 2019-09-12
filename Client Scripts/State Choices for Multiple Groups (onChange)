@@ -1,0 +1,25 @@
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+	
+	var group = g_form.getReference('assignment_group', getGroup);//get the value of group
+
+}
+	
+function getGroup(group){
+	if (group.name == "Access" )/*if group is Access, then:*/ {
+		g_form.clearOptions('state');
+		g_form.addOption('state', '14', 'Unassigned', 1 );
+		g_form.addOption('state', '13', 'Assigned', 2 );
+		g_form.addOption('state', '3', 'Closed Complete', 3 );
+  }
+	
+	if (group.name == "Acquisitions")/*if group is Acquisitions, then:*/ {
+		g_form.clearOptions('state');
+		g_form.addOption('state', '-5', 'Pending', 1 );
+		g_form.addOption('state', '13', 'Assigned', 2 );
+		g_form.addOption('state', '2', 'In Progress', 3 );
+		g_form.addOption('state', '3', 'Closed Complete', 4 );
+  } 
+}
