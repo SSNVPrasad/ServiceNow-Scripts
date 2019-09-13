@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+   <j:set var="jvar_n" value="add_me_${ref}"/>
+   <span id="${jvar_n}" onclick="addMe('${ref}')" title="Add me" alt="Add me" tabindex="0" class="btn btn-default icon-user-add">
+      <span class="sr-only">Add me</span>
+   </span>
+
+   <g2:evaluate var="jvar_groups" expression="gs.getUser().getMyGroups()" />
+
+   <script>
+      function addMe(reference) {
+         //Hide any field messages
+         g_form.hideFieldMsg('assigned_to', true);
+
+         //Check to see if the user is a member of selected group
+         var aGrp = g_form.getValue('assignment_group');
+         var myGroups = '$[jvar_groups]';
+
+         if(aGrp){
+            if(myGroups.indexOf(aGrp) > -1){
+               //Get the user reference field and populate the current user
+               var s = reference.split('.');
+               var referenceField = s[1];
+               g_form.setValue(referenceField, '$[gs.getUserID()]');
+            }
+            else{
+               //Display a field error message
+               g_form.showFieldMsg('assigned_to','You are not a member of the current assignment group.  Please select one of your groups and try again.','error');
+            }
+         }
+         else{
+            //Get the user reference field and populate the current user
+            var s = reference.split('.');
+            var referenceField = s[1];
+            g_form.setValue(referenceField, '$[gs.getUserID()]');
+         }
+      }
+   </script>
+</j:jelly>
