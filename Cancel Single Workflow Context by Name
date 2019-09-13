@@ -1,0 +1,9 @@
+//Query for all executing workflow contexts
+var flows = new Workflow().getRunningFlows(current);
+while(flows.next()){
+//Check for associated workflows by name
+if(flows.workflow_version.getDisplayValue() == 'Routine Change'){
+//Cancel the workflow context
+new Workflow().cancelContext(flows);
+}
+}
