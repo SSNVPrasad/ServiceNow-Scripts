@@ -1,0 +1,100 @@
+//Name: Find Record References
+//Table: Global
+//Order: 500
+//Action name: find_references
+//Show insert/Show update: False/True
+//Form link: True
+//Client: True
+//Hint: Find and display all tables and records that reference this record
+//OnClick: confirmFindReferences()
+//Condition: gs.hasRole('admin')
+
+
+//Client-side 'onclick' function
+function confirmFindReferences() {
+    if (confirm('Performing this action will query multiple tables and records and may take a long time to complete. Are you sure you want to continue?') == false) {
+        return false; //Abort submission
+    }
+    //Call the UI Action and skip the 'onclick' function
+    gsftSubmit(null, g_form.getFormElement(), 'find_references'); //MUST call the 'Action name' set in this UI Action
+} 
+
+//Code that runs without 'onclick'
+//Ensure call to server-side function with no browser errors
+if (typeof window == 'undefined')
+    findReferences();
+
+//Server-side function
+function findReferences() {
+    var msg = '<b>Matching tables and columns where this record is referenced (if any) are displayed below...</b><br/>';
+    var refTable = new TableUtils(current.getTableName()).getTables();
+    gs.include("j2js");
+    refTable = j2js(refTable).join();
+    var refRecordID = current.sys_id;
+    //Query dictionary table for reference, document_id, and condition fields
+    var dict = new GlideRecord('sys_dictionary');
+    dict.addQuery('reference', 'IN', refTable).addOrCondition('internal_type', 'document_id').addOrCondition('internal_type', 'conditions');
+    //Do not query audit and log fields
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'var__m_');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'ecc_');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'ha_');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'syslog');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'sys_history');
+    dict.addQuery('name', 'DOES NOT CONTAIN', '_log');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'text_search');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'ts_');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'sys_watermark');
+    dict.addQuery('name', 'DOES NOT CONTAIN', 'sys_audit');
+    dict.orderBy('name');
+    dict.orderBy('element');
+    dict.query();
+    while (dict.next()) {
+        var tblName = dict.name.toString();
+        // Skip tables used for Table Rotation
+        var gr = new GlideRecord("sys_table_rotation_schedule");
+        gr.addQuery("name.name", '!=', tblName);
+        gr.addQuery("table_name", tblName);
+        gr.query();
+        if (!gr.hasNext()) {
+            var recMessage = ' records found';
+            var filterOperator = '=';
+            var refType = dict.internal_type;
+            if (refType == 'glide_list' || refType == 'conditions') {
+                filterOperator = 'LIKE';
+            }
+
+            //Query each table for matching records
+            var rec = new GlideRecord(tblName);
+            if (refType == 'glide_list' || refType == 'conditions') {
+                rec.addQuery(dict.element, 'CONTAINS', refRecordID);
+            } else {
+                rec.addQuery(dict.element, refRecordID);
+            }
+            rec.query();
+            if (rec.getRowCount() == 1) {
+                recMessage = ' record found';
+            }
+            if (rec.getRowCount() > 0) {
+                //Display table/column info
+                msg = msg + '<b>Table: </b><i>' + tblName + '</i>' + ' - <b>Column [Column type]: </b><i>' + dict.element + '</i> [' + dict.internal_type + ']' + ' --- ' + '<span style="color: #136fb0;">' + '<a href="' + dict.name + '_list.do?sysparm_query=' + dict.element + filterOperator + refRecordID + '" target="_blank" rel="noopener">' + rec.getRowCount() + recMessage + '</a></span>.<br/>' + '';
+            }
+        }
+    }
+
+    //Query for workflow variable values
+    tblName = 'sys_variable_value';
+    var vVal = new GlideRecord(tblName);
+    vVal.addQuery('value', 'CONTAINS', refRecordID);
+    vVal.query();
+    if (vVal.getRowCount() == 1) {
+        recMessage = ' record found';
+    }
+
+    if (vVal.getRowCount() > 0) {
+        //Display table/column info
+        msg = msg + '<b>Table: </b><i>' + tblName + '</i>' + ' - <b>Column [Column type]: </b><i>' + 'value' + '</i> [' + 'string' + ']' + ' --- ' + '<span style="color: #136fb0;">' + '<a href="' + tblName + '_list.do?sysparm_query=' + 'valueLIKE' + refRecordID + '" target="_blank" rel="noopener">' + vVal.getRowCount() + recMessage + '</a></span>' + '.' + '';
+    }
+
+    gs.addInfoMessage(msg);
+    action.setRedirectURL(current);
+}
