@@ -1,0 +1,12 @@
+function onChange(control, oldValue, newValue, isLoading) {
+   //If the page isn't loading
+   if(!isLoading){
+      //If the new value isn't blank
+      if(newValue != ''){
+         //Change to the 'ess' view if the Category is 'Hardware'
+         if(newValue == 'hardware'){
+            switchView('section','incident','ess');
+         }
+      }
+   }
+}
